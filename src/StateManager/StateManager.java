@@ -8,10 +8,6 @@ import javax.swing.JPanel;
 
 import Main.*;
 
-
-
-
-
 public class StateManager {
     public enum State{
         MENU,GAME

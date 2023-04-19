@@ -2,12 +2,30 @@ package Enitity;
 
 import java.awt.Graphics;
 
-public abstract class Entity {
-    protected int width;
-    protected int height;
-    protected int x;
-    protected int y;
-    protected boolean active;
+import Graphics.IRender;
+import Graphics.Sprite;
+
+public abstract class Entity implements IRender {
+    protected double  x;
+    protected double  y;
+    protected Sprite sprite; 
+    
+    public Entity() {
+        x = 0; 
+        y = 0;  
+    }
+    
+    public Entity(int x , int y , int width , int height) {
+    		this.x = x; 
+    		this.y = y; 
+    		this.width = width; 
+    		this.height = height; 
+    }
+    
+    public Entity(int x , int  y) {
+    	this.x = x ; 
+    	this.y = y ; 
+    }
     
     /**
      * @return the width
@@ -82,8 +100,6 @@ public abstract class Entity {
     public abstract void update() ;
     public abstract void render(Graphics g);
     
-    public Entity() {
-        // TODO Auto-generated constructor stub
-    }
+   
 
 }

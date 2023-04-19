@@ -38,7 +38,7 @@ public class Main extends JFrame implements  Runnable {
     }
     @Override
     public void run() {
-      long FPS = 15;
+      long FPS = 120;
 
       long previousTime = System.nanoTime();
       long currentTime;
