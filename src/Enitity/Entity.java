@@ -6,8 +6,8 @@ import Graphics.IRender;
 import Graphics.Sprite;
 
 public abstract class Entity implements IRender {
-    protected double  x;
-    protected double  y;
+    protected int  x;
+    protected int  y;
     protected Sprite sprite; 
     
     public Entity() {
@@ -18,8 +18,6 @@ public abstract class Entity implements IRender {
     public Entity(int x , int y , int width , int height) {
     		this.x = x; 
     		this.y = y; 
-    		this.width = width; 
-    		this.height = height; 
     }
     
     public Entity(int x , int  y) {

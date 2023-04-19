@@ -7,23 +7,29 @@ import javax.imageio.ImageIO;
 
 public class SpriteSheet {
 	String path; 
-	public int SIZE = 0;
-	public int[] pixels; 
 	public BufferedImage img; 
 	
-	public SpriteSheet(String path , int size) {
-		SIZE = size; 
+	public SpriteSheet(String path) {
 		this.path = path; 
-		pixels = new int[size * size];
 		load(); 
 	}
 
 	private void load() {
 		InputStream is = getClass().getResourceAsStream(path); 
 		try {
-			img = ImageIO.read(is); 
+			img = ImageIO.read(is);  
 		} catch (Exception e) {
 			 System.out.println("Khong doc duoc anh!");
 		}
 	}
+	
+	public BufferedImage getImg() {
+		return img; 
+	}
+	
+	public BufferedImage getSprite(int x , int y) {
+		// tra ve subimg toa do x y trong mot anh 
+		return this.img.getSubimage(x*32, y*32, 32, 32); 
+	}
+	
 }
