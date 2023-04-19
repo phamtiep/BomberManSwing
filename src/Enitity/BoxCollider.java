@@ -3,23 +3,14 @@ package Enitity;
 import Config.GameConfig;
 
 public class BoxCollider {
-    private double x;
-    private double y;
-    private final double width;
-    private final double height;
+    private int x;
+    private int y;
+    private final double width = 32;
+    private final double height = 32;
 
-    public BoxCollider(double x, double y) {
+    public BoxCollider(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = GameConfig.SIZE_BLOCK;
-        this.height = GameConfig.SIZE_BLOCK;
-    }
-
-    public BoxCollider(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
     }
 
     public double getX() {
@@ -38,7 +29,7 @@ public class BoxCollider {
         return height;
     }
 
-    public void setLocation(double x, double y) {
+    public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }

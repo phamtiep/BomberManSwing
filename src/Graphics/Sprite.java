@@ -13,7 +13,6 @@ public class Sprite {
 		sheet = new SpriteSheet(path); 
 		load(); 
 	}
-	
 	// ham load subimg vao mot ma tran voi kich thuoc la row / 32 va cols / 32; 
 	private void load() {
 		int row = sheet.getImg().getWidth() / 32 ;

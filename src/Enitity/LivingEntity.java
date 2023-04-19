@@ -13,11 +13,6 @@ public abstract class LivingEntity extends Entity {
 		live = 1; 
 	}
 	
-	public LivingEntity(int x , int y , int width , int height) {
-		super(x , y , width , height); 
-		live = 1; 
-	}
-	
 	protected abstract void move();
 
 	public double getSpeed() {
@@ -37,11 +32,11 @@ public abstract class LivingEntity extends Entity {
 	}
 
 	public boolean isKilled() {
-		return destroyed || live <= 0;
+		return alive|| live <= 0;
 	}
 
 	public void setDestroyed(boolean destroyed) {
-		this.destroyed = destroyed;
+		this.alive = destroyed;
 	} 
 	
 	
