@@ -35,11 +35,6 @@ public class Wall extends Entity {
 		g.drawImage(wall , 4*32 , 0 , null); 
 	}
 
-	@Override
-	public BufferedImage getImg() {
-		return wall;
-	}
-
 	public void setWall(BufferedImage wall) {
 		this.wall = wall;
 	}

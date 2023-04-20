@@ -65,9 +65,4 @@ public class Brick extends Entity {
 		ExploderBrick(g);
 	}
 	
-	@Override
-	public BufferedImage getImg() {
-		return this.brick; 
-	}
-
 }

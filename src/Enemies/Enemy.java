@@ -9,12 +9,13 @@ import java.util.Random;
 import Config.Direction;
 import Enitity.Entity;
 import Enitity.LivingEntity;
+import Graphics.Animation;
 import Graphics.Sprite;
 import Graphics.SpriteSheet;
 
 public abstract class Enemy extends LivingEntity {
 		
-		protected BufferedImage[] animation; 
+		protected Animation animation; 
 		protected boolean done = false; 
 		protected double moveX = 0; 
 		protected double moveY = 0; 
@@ -35,6 +36,10 @@ public abstract class Enemy extends LivingEntity {
 		
 		// doi tiep code animation
 		public void render(Graphics g) {
+			if(!deytroyed) {
+				animation.render(g, x*32, y*32);
+			}
+			
 			
 		}
 		

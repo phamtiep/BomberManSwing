@@ -34,8 +34,4 @@ public class Grass extends Entity {
 		g.drawImage(grass , 3 * 32 , 0, null); 
 	}
 	
-	@Override
-	public BufferedImage getImg() {
-		return this.grass; 
-	}
 }
