@@ -8,13 +8,30 @@ import Config.GameConfig;
 import Time.Timers;
 
 public class Animation {
+<<<<<<< HEAD
 	private Sprite sprite; 
     private final int count; 
     private final int cols; 
     private int i = 0; 
     //Used to keep track of how long current animation frame has been on screen
+=======
+    private final Image image;
+    private final int count;
+    private final int columns;
+    private final int offsetX;
+    private final int offsetY;
+    private int sX;
+    private int sY;
+    private final int sWidth;
+    private final int sHeight;
+    private final int dWidth;
+    private final int dHeight;
+ 
+
+    
+>>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
     private float calcTime;
-    //Used to determine the speed of the animation,is total amount of time for the entire animation
+    //entire animation
     private float totalTime;
     //Stores how long each animation frame should be on screen
     private int timePerFrame;
@@ -29,12 +46,26 @@ public class Animation {
         this.count = count;
         this.cols = colums; 
         this.totalTime = totalTime;
+<<<<<<< HEAD
        
+=======
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.sWidth = sWidth;
+        this.sHeight = sHeight;
+
+        
+        this.dWidth =GameConfig.SIZE_BLOCK;
+        this.dHeight = GameConfig.SIZE_BLOCK;
+        
+
+>>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
         timers = Timers.getInstance();
         timePerFrame = totalTime / count;
         reset();
     }
 
+<<<<<<< HEAD
     /**
      *
      * @param image : spriteSheet.
@@ -48,6 +79,9 @@ public class Animation {
      * @param dWidth: the destination rectangle's width.
      * @param dHeight: the destination rectangle's height.
      */
+=======
+    
+>>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
     public void reset() {
         done = false;
         calcTime = 0.0f;
@@ -80,8 +114,13 @@ public class Animation {
                 }
             }
             int index = (int) (calcTime / timePerFrame);
+<<<<<<< HEAD
             i = (index % count)*GameConfig.SIZE_BLOCK ; 
             //System.out.println(i);
+=======
+            sX = (index % columns) * (sWidth )  + offsetX;
+            sY = ((int) (index / columns)) * sHeight + offsetY;
+>>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
         }
     }
 
