@@ -26,6 +26,7 @@ public abstract class Enemy extends LivingEntity {
 		
 		protected List<Direction> directionList = new ArrayList<>(); 
 		protected Sprite sheet; 
+		protected int score; 
 		
 		public Enemy(int x , int y) {
 			super(x , y); 
@@ -42,10 +43,64 @@ public abstract class Enemy extends LivingEntity {
 				move(); 
 			}
 		}
-		
+		/**
 		public boolean checkMapHash(int i , int j) {
-			
+			return true; 
+		}
+		**/
+		
+		protected void initDirectionList() {
+			this.directionList.clear();
+			directionList.add(Direction.UP);
+			directionList.add(Direction.DOWN); 
+			directionList.add(Direction.LEFT); 
+			directionList.add(Direction.RIGHT); 
 		}
 		
-		
+		protected void checkMove() {
+			if (currenDirection == null) {
+				initDirectionList();
+				return;
+			}
+			switch (currenDirection) {
+			case UP: {
+				if (canMoveU) {
+					moveY = -speed;
+				} else {
+					directionList.remove(Direction.UP);
+				}
+				break;
+			}
+			case DOWN: {
+				if (canMoveD) {
+					moveY = speed;
+					initDirectionList();
+				} else {
+					directionList.remove(Direction.DOWN);
+				}
+				break;
+			}
+			case LEFT: {
+				if (canMoveL) {
+					moveX = -speed;
+					initDirectionList();
+				} else {
+					directionList.remove(Direction.LEFT);
+				}
+				break;
+			}
+			case RIGHT: {
+				if (canMoveR) {
+					moveX = speed;
+					initDirectionList();
+				} else {
+					directionList.remove(Direction.RIGHT);
+				}
+				break;
+			}
+			default:
+				break;
+			}
+		}
+
 }

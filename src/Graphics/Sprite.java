@@ -4,12 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
 public class Sprite {
-	private int x , y;
 	public BufferedImage[][] image;
-	String path = "top1.java"; // duong dan toi anh 
+	String path; // duong dan toi anh 
 	private SpriteSheet sheet; 
 	
-	public Sprite(int x , int y) {  
+	public Sprite(String path) {  
 		sheet = new SpriteSheet(path); 
 		load(); 
 	}

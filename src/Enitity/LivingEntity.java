@@ -1,12 +1,14 @@
 package Enitity;
 
+import Config.Direction;
+
 public abstract class LivingEntity extends Entity {
 	
 	protected double speed;  
 	protected int live; 
 	protected boolean alive = true;
-	protected boolean moving = false; 
-	public int timeafter = 80 ; 
+	protected boolean moving = false;
+	protected Direction currenDirection; 
 	
 	public LivingEntity(int x , int y) {
 		super(x , y);
@@ -38,6 +40,14 @@ public abstract class LivingEntity extends Entity {
 	public void setDestroyed(boolean destroyed) {
 		this.alive = destroyed;
 	} 
+	
+	public Direction getCurrenDirection() {
+		return this.currenDirection; 
+	}
+	
+	public void setCurrenDirection(Direction other) {
+		this.currenDirection = other; 
+	}
 	
 	
 	

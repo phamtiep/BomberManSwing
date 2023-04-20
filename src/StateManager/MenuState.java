@@ -9,8 +9,10 @@ import Main.Main;
 
 public class MenuState extends JPanel {
 
+	
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
        
     }
     public MenuState() {
