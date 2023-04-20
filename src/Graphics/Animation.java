@@ -18,12 +18,11 @@ public class Animation {
     private final int sHeight;
     private final int dWidth;
     private final int dHeight;
-    private final int paddingX;
-    private final boolean flip;
+ 
 
-    //Used to keep track of how long current animation frame has been on screen
+    
     private float calcTime;
-    //Used to determine the speed of the animation,is total amount of time for the entire animation
+    //entire animation
     private float totalTime;
     //Stores how long each animation frame should be on screen
     private int timePerFrame;
@@ -55,52 +54,17 @@ public class Animation {
         this.sWidth = sWidth;
         this.sHeight = sHeight;
 
-        this.flip = false;
+        
         this.dWidth =GameConfig.SIZE_BLOCK;
         this.dHeight = GameConfig.SIZE_BLOCK;
-        this.paddingX = 0;
+        
 
         timers = Timers.getInstance();
         timePerFrame = totalTime / count;
         reset();
     }
 
-    /**
-     *
-     * @param image : spriteSheet.
-     * @param count : the number of frames.
-     * @param columns : the number of the columns.
-     * @param totalTime : (milli) total amount of time for the entire animation.
-     * @param offsetX : the source rectangle's X coordinate position.
-     * @param offsetY : the source rectangle's Y coordinate position.
-     * @param sWidth : the source rectangle's width.
-     * @param sHeight : the source rectangle's height.
-     * @param dWidth: the destination rectangle's width.
-     * @param dHeight: the destination rectangle's height.
-     */
-    public Animation(Image image, int count, int columns, int totalTime,
-                     int offsetX, int offsetY, int sWidth, int sHeight,
-                     int dWidth, int dHeight, int paddingX, boolean flip) {
-        this.image = image;
-        this.count = count;
-        this.columns = columns;
-        this.totalTime = totalTime;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
-        this.sWidth = sWidth;
-        this.sHeight = sHeight;
-
-        this.flip = flip;
-        this.dWidth = (flip) ? -dWidth : dWidth;
-        //this.dWidth = dWidth;
-        this.dHeight = dHeight;
-        this.paddingX = paddingX;
-
-        timers = Timers.getInstance();
-        timePerFrame = totalTime / count;
-        reset();
-    }
-
+    
     public void reset() {
         sX = offsetX;
         sY = offsetY;
@@ -135,7 +99,7 @@ public class Animation {
                 }
             }
             int index = (int) (calcTime / timePerFrame);
-            sX = (index % columns) * (sWidth + paddingX)  + offsetX;
+            sX = (index % columns) * (sWidth )  + offsetX;
             sY = ((int) (index / columns)) * sHeight + offsetY;
         }
     }
