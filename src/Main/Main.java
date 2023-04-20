@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import StateManager.StateManager;
 import StateManager.StateManager.State;
+import Time.Timers;
 
 public class Main extends JFrame implements  Runnable {
    
@@ -48,6 +49,8 @@ public class Main extends JFrame implements  Runnable {
 
       while (true) {
         // gameState.Render()
+        Timers.getInstance().update(System.nanoTime());
+       
         repaint();
         currentTime = System.nanoTime();
         sleepTime = period - (currentTime - previousTime);

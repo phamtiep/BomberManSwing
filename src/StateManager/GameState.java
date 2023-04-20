@@ -5,16 +5,18 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
-import Enemies.Otopus;
+
 import Main.*;
 
 public class GameState extends JPanel {
 
-	Otopus otopus = new Otopus(0, 0); 
+	//Otopus otopus = new Otopus(0, 0); 
 	
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        otopus.render(g);
+
+       
+
     }
 
     public GameState() {

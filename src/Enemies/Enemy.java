@@ -43,11 +43,8 @@ public abstract class Enemy extends LivingEntity {
 				move(); 
 			}
 		}
-		/**
-		public boolean checkMapHash(int i , int j) {
-			return true; 
-		}
-		**/
+
+
 		
 		protected void initDirectionList() {
 			this.directionList.clear();
@@ -55,6 +52,7 @@ public abstract class Enemy extends LivingEntity {
 			directionList.add(Direction.DOWN); 
 			directionList.add(Direction.LEFT); 
 			directionList.add(Direction.RIGHT); 
+
 		}
 		
 		protected void checkMove() {
