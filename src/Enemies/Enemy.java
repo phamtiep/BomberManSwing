@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.Random;
 
 import Config.Direction;
+import Config.GameConfig;
 import Enitity.Entity;
 import Enitity.LivingEntity;
 import Graphics.Animation;
 import Graphics.Sprite;
 import Graphics.SpriteSheet;
+import Map.Map;
 
 public abstract class Enemy extends LivingEntity {
 		
@@ -46,11 +48,17 @@ public abstract class Enemy extends LivingEntity {
 		
 		public void update() {
 			if(!alive) {
-				move(); 
+				move();
 			}
 		}
 
-
+		public boolean checkHashMap(int i , int j) {
+			Map map = Map.getInstance();
+			if(i < 0 || i > (map.getHeight() / GameConfig.SIZE_BLOCK) - 1 || j < 0 || j > (map.getWidth() / GameConfig.SIZE_BLOCK) - 1) {
+				return false; 
+			}
+			return map.getHashAt(i, j) == map.getHash("grass"); 
+		}
 		
 		protected void initDirectionList() {
 			this.directionList.clear();

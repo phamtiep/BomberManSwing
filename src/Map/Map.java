@@ -47,15 +47,15 @@ public class Map {
                 }
             }
         }
+        
+        public int getWidth() {
+            return this.mapHash[0].length * GameConfig.SIZE_BLOCK;
+        }
 
-       
-      
-      
-          
-
-     
-      
-
+        public int getHeight() {
+            return this.mapHash.length * GameConfig.SIZE_BLOCK;
+        }
+        
         public void destroyBrick(int i, int j) {
             List<Brick> brickList = EntityManager.getInstance().brick;
            
