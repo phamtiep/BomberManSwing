@@ -12,7 +12,7 @@ public class EntityManager {
 	
     
 	
-	  public List<Enemy> enemy = new ArrayList<>();
+	public List<Enemy> enemy = new ArrayList<>();
     public List<Wall> wall = new ArrayList<>();
     public List<Grass> grass = new ArrayList<>();
     public List<Brick> brick = new ArrayList<>();
@@ -33,7 +33,7 @@ public class EntityManager {
         
     }
     public void render(Graphics g) {
-       otopus.render(g); 
+    	
     }
     
     public void update() {
