@@ -8,28 +8,17 @@ import Config.GameConfig;
 import Time.Timers;
 
 public class Animation {
-<<<<<<< HEAD
+
 	private Sprite sprite; 
     private final int count; 
     private final int cols; 
     private int i = 0; 
     //Used to keep track of how long current animation frame has been on screen
-=======
-    private final Image image;
-    private final int count;
-    private final int columns;
-    private final int offsetX;
-    private final int offsetY;
-    private int sX;
-    private int sY;
-    private final int sWidth;
-    private final int sHeight;
-    private final int dWidth;
-    private final int dHeight;
+
  
 
     
->>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
+
     private float calcTime;
     //entire animation
     private float totalTime;
@@ -46,42 +35,12 @@ public class Animation {
         this.count = count;
         this.cols = colums; 
         this.totalTime = totalTime;
-<<<<<<< HEAD
-       
-=======
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
-        this.sWidth = sWidth;
-        this.sHeight = sHeight;
 
-        
-        this.dWidth =GameConfig.SIZE_BLOCK;
-        this.dHeight = GameConfig.SIZE_BLOCK;
-        
-
->>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
         timers = Timers.getInstance();
         timePerFrame = totalTime / count;
         reset();
     }
 
-<<<<<<< HEAD
-    /**
-     *
-     * @param image : spriteSheet.
-     * @param count : the number of frames.
-     * @param columns : the number of the columns.
-     * @param totalTime : (milli) total amount of time for the entire animation.
-     * @param offsetX : the source rectangle's X coordinate position.
-     * @param offsetY : the source rectangle's Y coordinate position.
-     * @param sWidth : the source rectangle's width.
-     * @param sHeight : the source rectangle's height.
-     * @param dWidth: the destination rectangle's width.
-     * @param dHeight: the destination rectangle's height.
-     */
-=======
-    
->>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
     public void reset() {
         done = false;
         calcTime = 0.0f;
@@ -114,13 +73,11 @@ public class Animation {
                 }
             }
             int index = (int) (calcTime / timePerFrame);
-<<<<<<< HEAD
-            i = (index % count)*GameConfig.SIZE_BLOCK ; 
+
+            i = (index % count) ; 
+            System.out.println(timers.getDeltaTime());
             //System.out.println(i);
-=======
-            sX = (index % columns) * (sWidth )  + offsetX;
-            sY = ((int) (index / columns)) * sHeight + offsetY;
->>>>>>> 74f135354b918cf340879eb0c5adf88fd91b6417
+
         }
     }
 
