@@ -6,7 +6,7 @@ public abstract class LivingEntity extends Entity {
 	
 	protected double speed;  
 	protected int live; 
-	protected boolean deytroyed = true;
+	protected boolean deytroyed = false;
 	protected boolean moving = false;
 	protected Direction currenDirection; 
 	

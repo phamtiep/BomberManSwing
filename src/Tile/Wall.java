@@ -32,7 +32,7 @@ public class Wall extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(wall , 4*32 , 0 , null); 
+		g.drawImage(wall , x*32 , y*32 , null); 
 	}
 
 	public void setWall(BufferedImage wall) {

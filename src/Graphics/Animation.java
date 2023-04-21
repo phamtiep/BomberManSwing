@@ -13,13 +13,9 @@ public class Animation {
     private final int count; 
     private final int cols; 
     private int i = 0; 
-    //Used to keep track of how long current animation frame has been on screen
-
- 
-
-    
-
-    private float calcTime;
+    private int dx = 0; // toa do bat dau chay cua i 
+    //Used to keep track of how long current animation frame has been on screen 
+     private float calcTime;
     //entire animation
     private float totalTime;
     //Stores how long each animation frame should be on screen
@@ -30,12 +26,12 @@ public class Animation {
     // Get Delta Time between each frame
     private Timers timers;
     
-    public Animation(String path , int count, int colums,  int totalTime) {
+    public Animation(String path , int count, int colums,  int totalTime , int dx) {
     	sprite = new Sprite(path); 
         this.count = count;
         this.cols = colums; 
         this.totalTime = totalTime;
-
+        this.dx = dx; 
         timers = Timers.getInstance();
         timePerFrame = totalTime / count;
         reset();
@@ -56,7 +52,7 @@ public class Animation {
     public void render(Graphics g, int dX, int dY) {
         if (!done) {
         	
-            g.drawImage(sprite.getSprite(i, cols), dX, dY, null); 
+            g.drawImage(sprite.getSprite(dx + i, cols), dX*32, dY*32, null); 
         }
     }
 

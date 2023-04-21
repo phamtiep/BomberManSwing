@@ -34,10 +34,11 @@ public abstract class Enemy extends LivingEntity {
 			speed = 1; 
 		}
 		
-		// doi tiep code animation
 		public void render(Graphics g) {
 			if(!deytroyed) {
-				animation.render(g, x*32, y*32);
+				animation.render(g, x, y);
+				animation.update();
+				
 			}
 			
 			
@@ -105,5 +106,4 @@ public abstract class Enemy extends LivingEntity {
 				break;
 			}
 		}
-
 }

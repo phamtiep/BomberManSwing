@@ -49,7 +49,7 @@ public class Brick extends Entity {
 
 	public void ExploderBrick(Graphics g) {
 		updateAnimation();
-		g.drawImage(brickExplodes[aniIndex],2*32, 0*32, null); 
+		g.drawImage(brickExplodes[aniIndex],x*32, y*32, null); 
 	}
 
 
@@ -61,7 +61,7 @@ public class Brick extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(brick, 1*32 , 0 * 32 , null);
+		g.drawImage(brick, x*32 , y* 32 , null);
 		ExploderBrick(g);
 	}
 	
