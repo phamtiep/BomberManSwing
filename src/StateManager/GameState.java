@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import Config.GameConfig;
 import Enemies.Enemy;
 import Enemies.Ghost;
 import Enemies.Otopus;
@@ -42,7 +43,7 @@ public class GameState extends JPanel {
             }
         };
         this.addKeyListener(inp);
-        this.setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+        this.setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
       
     }
 }

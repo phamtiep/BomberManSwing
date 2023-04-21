@@ -1,24 +1,23 @@
-package Tile;
+package Enitity;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import Enitity.Entity;
 import Graphics.Sprite;
 
 public class Wall extends Entity {
 	
 	public static final boolean initialized = false; 
-	private  BufferedImage wall ; 
+	public static  BufferedImage wall ; 
 	private boolean appear = false;
-	private boolean canPass = false; 
-	
+	//private boolean canPass = false; 
+	public static Sprite sprite;
 	public Wall(int x , int y) {
 		super(x , y); 
 		initWall(); 
 	}
 	
-	public void initWall() {
+	public static void initWall() {
 		sprite = new Sprite("/anhgame.png"); 
 		wall = sprite.getSprite(3, 5); 
 	}
@@ -35,9 +34,7 @@ public class Wall extends Entity {
 		g.drawImage(wall , x*32 , y*32 , null); 
 	}
 
-	public void setWall(BufferedImage wall) {
-		this.wall = wall;
-	}
+	
 
 	public boolean isAppear() {
 		return appear;
@@ -47,14 +44,13 @@ public class Wall extends Entity {
 		this.appear = appear;
 	}
 
-	public boolean isCanPass() {
-		return canPass;
-	}
+    public void setLocation(int i, int j) {
+        // TODO Auto-generated method stub
+        x = i ;
+        y = j;
+    }
 
-	public void setCanPass(boolean canPass) {
-		this.canPass = canPass;
-	}
-	
+
 	
 
 }

@@ -4,15 +4,14 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
-
+import Config.GameConfig;
 import StateManager.StateManager;
 import StateManager.StateManager.State;
 import Time.Timers;
 
 public class Main extends JFrame implements  Runnable {
    
-    public static final int SCREEN_WIDTH = 32*20;
-    public static final int SCREEN_HEIGHT = 32*15;
+   
     private static Main instance = null;
     
     
@@ -27,7 +26,7 @@ public class Main extends JFrame implements  Runnable {
     }
 
     public void startGame() {
-        this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.setSize(GameConfig.WIDTH + GameConfig.SIZE_BLOCK*2, GameConfig.HEIGHT + GameConfig.SIZE_BLOCK*2);
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

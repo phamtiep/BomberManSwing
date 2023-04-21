@@ -1,15 +1,14 @@
-package Tile;
+package Enitity;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import Enitity.Entity;
 import Graphics.Sprite;
 
 public class Grass extends Entity {
 	private static boolean initialized = false; 
-	private BufferedImage grass; 
-	
+	public static BufferedImage grass; 
+	public static Sprite sprite ;
 	public Grass(int x , int y) {
 		super(x, y); 
 		initGrass(); 
@@ -17,7 +16,7 @@ public class Grass extends Entity {
 	}
 	
 
-	private void initGrass() {
+	public static void initGrass() {
 		sprite = new Sprite("/anhgame.png"); 
 		grass = sprite.getSprite(3, 4); 
 	}
@@ -33,5 +32,12 @@ public class Grass extends Entity {
 	public void render(Graphics g) {
 		g.drawImage(grass , x* 32 , y * 32, null); 
 	}
+
+
+    public void setLocation(int i, int j) {
+       x = i;
+       y = j;
+        
+    }
 	
 }

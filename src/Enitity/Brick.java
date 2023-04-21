@@ -1,9 +1,8 @@
-package Tile;
+package Enitity;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import Enitity.Entity;
 import Graphics.Sprite;
 
 public class Brick extends Entity {
@@ -23,7 +22,25 @@ public class Brick extends Entity {
 	
 	
 
-	private void loadAnimationExplodes() {
+	/**
+     * @return the destroyed
+     */
+    public boolean isDestroyed() {
+        return destroyed;
+    }
+
+
+
+    /**
+     * @param destroyed the destroyed to set
+     */
+    public void setDestroyed(boolean destroyed) {
+        this.destroyed = destroyed;
+    }
+
+
+
+    private void loadAnimationExplodes() {
 		for(int i = 0; i < 4; i++) {
 			brickExplodes[i] = sprite.getSprite(3, i); 
 		}

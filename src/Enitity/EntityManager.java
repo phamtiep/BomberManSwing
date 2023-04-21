@@ -9,11 +9,15 @@ import Enemies.Otopus;
 
 public class EntityManager {
 	
-	public Otopus otopus = new Otopus(0, 0); 
+	
     
 	
 	  public List<Enemy> enemy = new ArrayList<>();
-    public List<Entity> entities = new ArrayList<>();
+    public List<Wall> wall = new ArrayList<>();
+    public List<Grass> grass = new ArrayList<>();
+    public List<Brick> brick = new ArrayList<>();
+    
+    
     // list các đối tượng
     public static EntityManager instance = new EntityManager();
     
