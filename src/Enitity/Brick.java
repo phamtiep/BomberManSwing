@@ -50,7 +50,7 @@ public class Brick extends Entity {
 
 	private void initBrick() {
 		sprite = new Sprite("/anhgame.png"); 
-		brick = sprite.getSprite(3, 0); 
+		brick = sprite.getSprite(0, 3); 
 	}
 	
 	public void updateAnimation() {
@@ -79,7 +79,7 @@ public class Brick extends Entity {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(brick, x*32 , y* 32 , null);
-		ExploderBrick(g);
+	//	ExploderBrick(g);
 	}
 	
 }

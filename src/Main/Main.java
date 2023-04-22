@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import Config.GameConfig;
+import Map.LeverMap;
 import StateManager.StateManager;
 import StateManager.StateManager.State;
 import Time.Timers;
@@ -26,7 +27,7 @@ public class Main extends JFrame implements  Runnable {
     }
 
     public void startGame() {
-        this.setSize(GameConfig.WIDTH + GameConfig.SIZE_BLOCK*2, GameConfig.HEIGHT + GameConfig.SIZE_BLOCK*2);
+        this.setSize(GameConfig.SCREEN_WIDTH,GameConfig.SCREEN_HEIGHT);
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -69,7 +70,7 @@ public class Main extends JFrame implements  Runnable {
       }
     }
     public static void main(String args[]) {
-        
+        LeverMap.getInstance().inputLever();
         Main.getInstance().startGame();
     }
 }

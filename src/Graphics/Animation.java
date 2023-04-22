@@ -14,16 +14,16 @@ public class Animation {
     private final int cols; 
     private int i = 0; 
     private int dx = 0; // toa do bat dau chay cua i 
-    //Used to keep track of how long current animation frame has been on screen 
+    
      private float calcTime;
-    //entire animation
+
     private float totalTime;
-    //Stores how long each animation frame should be on screen
+
     private int timePerFrame;
-    //Is set to true only if the wrap mode is once and the last frame of the animation is reached
+   
     private boolean done = false;
     private boolean loop;
-    // Get Delta Time between each frame
+ 
     private Timers timers;
     
     public Animation(String path , int count, int colums,  int totalTime , int dx) {

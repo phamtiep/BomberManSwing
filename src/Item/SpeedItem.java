@@ -1,5 +1,6 @@
-package Enitity;
+package Item;
 
+import Enitity.Item;
 import Graphics.Sprite;
 
 public class SpeedItem extends Item {

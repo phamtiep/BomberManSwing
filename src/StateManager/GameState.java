@@ -9,22 +9,22 @@ import Config.GameConfig;
 import Enemies.Enemy;
 import Enemies.Ghost;
 import Enemies.Otopus;
+import Enitity.EntityManager;
 import Enitity.Item;
-import Enitity.SpeedItem;
+import Item.SpeedItem;
 import Main.*;
 import Map.LeverMap;
 
 public class GameState extends JPanel {
 
-	Enemy otopus = new Otopus(0,0); 
-	Enemy ghost = new Ghost(1, 1); 
-	Item spi = new SpeedItem(0,0); 
+	
 	LeverMap map = LeverMap.getInstance(); 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        map.render(g);
-        otopus.render(g);
-        ghost.render(g);
+        LeverMap.getInstance().render(g);
+       
+        EntityManager.getInstance().render(g);
+       
         
     }
 

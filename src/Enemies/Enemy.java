@@ -52,12 +52,19 @@ public abstract class Enemy extends LivingEntity {
 			}
 		}
 
+
 		public boolean checkHashMap(int i , int j) {
 			LeverMap map = LeverMap.getInstance();
 			if(i < 0 || i > (map.getHeight() / GameConfig.SIZE_BLOCK) - 1 || j < 0 || j > (map.getWidth() / GameConfig.SIZE_BLOCK) - 1) {
 				return false; 
 			}
 			return map.getHashAt(i, j) == map.getHash("grass"); 
+		}
+		
+		public boolean checkMapHash(int i , int j) {
+            return canMoveD;
+			
+
 		}
 		
 		protected void initDirectionList() {

@@ -8,18 +8,18 @@ import Graphics.Sprite;
 public class Wall extends Entity {
 	
 	public static final boolean initialized = false; 
-	public static  BufferedImage wall ; 
+	public  BufferedImage wall ; 
 	private boolean appear = false;
 	//private boolean canPass = false; 
-	public static Sprite sprite;
+	public  Sprite sprite;
 	public Wall(int x , int y) {
 		super(x , y); 
 		initWall(); 
 	}
 	
-	public static void initWall() {
+	public void initWall() {
 		sprite = new Sprite("/anhgame.png"); 
-		wall = sprite.getSprite(3, 5); 
+		wall = sprite.getSprite(5, 3); 
 	}
 	
 

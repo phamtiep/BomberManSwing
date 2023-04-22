@@ -7,8 +7,8 @@ import Graphics.Sprite;
 
 public class Grass extends Entity {
 	private static boolean initialized = false; 
-	public static BufferedImage grass; 
-	public static Sprite sprite ;
+	public  BufferedImage grass; 
+	public  Sprite sprite ;
 	public Grass(int x , int y) {
 		super(x, y); 
 		initGrass(); 
@@ -16,7 +16,7 @@ public class Grass extends Entity {
 	}
 	
 
-	public static void initGrass() {
+	public  void initGrass() {
 		sprite = new Sprite("/anhgame.png"); 
 		grass = sprite.getSprite(4, 3); 
 	}

@@ -1,4 +1,6 @@
-package Enitity;
+package Item;
+
+import Enitity.Item;
 
 public class FlameItem extends Item {
 

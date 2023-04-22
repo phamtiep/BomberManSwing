@@ -6,6 +6,7 @@ import java.util.List;
 
 import Enemies.Enemy;
 import Enemies.Otopus;
+import Map.LeverMap;
 
 public class EntityManager {
 	
@@ -13,8 +14,7 @@ public class EntityManager {
     
 	
 	public List<Enemy> enemy = new ArrayList<>();
-    public List<Wall> wall = new ArrayList<>();
-    public List<Grass> grass = new ArrayList<>();
+    
     public List<Brick> brick = new ArrayList<>();    
     
     // list các đối tượng
@@ -32,6 +32,8 @@ public class EntityManager {
         
     }
     public void render(Graphics g) {
+      enemy.forEach(enemy -> enemy.render(g));
+      brick.forEach(brick -> brick.render(g));
     
     }
     
