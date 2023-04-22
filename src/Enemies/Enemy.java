@@ -13,7 +13,7 @@ import Enitity.LivingEntity;
 import Graphics.Animation;
 import Graphics.Sprite;
 import Graphics.SpriteSheet;
-import Map.Map;
+import Map.LeverMap;
 
 public abstract class Enemy extends LivingEntity {
 		
@@ -53,7 +53,7 @@ public abstract class Enemy extends LivingEntity {
 		}
 
 		public boolean checkHashMap(int i , int j) {
-			Map map = Map.getInstance();
+			LeverMap map = LeverMap.getInstance();
 			if(i < 0 || i > (map.getHeight() / GameConfig.SIZE_BLOCK) - 1 || j < 0 || j > (map.getWidth() / GameConfig.SIZE_BLOCK) - 1) {
 				return false; 
 			}

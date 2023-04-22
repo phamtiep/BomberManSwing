@@ -1,47 +1,48 @@
 package Map;
 
+
 import java.awt.Graphics;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.Scanner;
 
 import Config.GameConfig;
+import Enemies.Enemy;
 import Enitity.Brick;
 import Enitity.EntityManager;
 import Enitity.Grass;
 import Enitity.Wall;
 
-public class Map {
-
-        private char[][] mapHash;
-        private Grass grass;
-        private Wall wall;
+public class LeverMap {
+        private char[][] mapHash = new char[21][20];
+        private Grass grass = new Grass(0,0); 
+        private Wall wall = new Wall(0 , 0); 
 
         
         private final EntityManager entitiesManager = EntityManager.getInstance();
 
         private static class SingletonHelper {
-            private static final Map INSTANCE = new Map();
+            private static final LeverMap INSTANCE = new LeverMap();
         }
 
-        public static Map getInstance() {
+        public static LeverMap getInstance() {
             return SingletonHelper.INSTANCE;
         }
-
-       
 
         public static void init() {
             Grass.initGrass();
             Wall.initWall();
-            
-           
         }
 
         public void render(Graphics g) {
+        	inputLever();
             for (int i = 0; i < mapHash.length; ++i) {
                 for (int j = 0; j < mapHash[i].length; ++j) {
-                    grass.setLocation(32 * j, 32 * i);
+                    grass.setLocation(j, i);
                     grass.render(g);
                     if (mapHash[i][j] == getHash("wall")) {
-                        wall.setLocation(32 * j, 32 * i);
+                        wall.setLocation(j,i);
                         wall.render(g);
                     }
                 }
@@ -112,6 +113,53 @@ public class Map {
             }
             return output;
         }
-    }
+        
+        
+        
+        
+       public void inputLever() {
+  
+    	   List<Brick> brickList = entitiesManager.brick;
+    	   
+    	   try {
+    		   File input = new File("res/Mapvip.txt"); 
+    		   Scanner scanner = new Scanner(input);
+    		   int rows = scanner.nextInt(); 
+    		   int cols = scanner.nextInt(); 
+    		   String temp = scanner.nextLine(); 
+    		   
+    		   
+   
+    		   mapHash = new char[rows][cols]; 
+    		   
+    		   for(int i = 0; i < rows ; i++) {
+    			   String tile = scanner.nextLine(); // lay 1 hang 
+    			   for(int j = 0; j < cols; j++) {
+    				  char hash = tile.charAt(j); // doc tung phan tu
+    				  
+    				  switch (hash) 
+    				  { 
+                      case '*': {
+                          brickList.add(new Brick(i , j));
+                          break;
+                      }
+                      default:
+                          break;
+                  }
+                  mapHash[i][j] = hash;
+                 }
+    				  
+    		}
+		}
+    	   catch (Exception e) {
+			System.out.println("EROR READING FILE");
+		}
+    	   
+    	   
+       }
+        
+        
+        
+}
 
 

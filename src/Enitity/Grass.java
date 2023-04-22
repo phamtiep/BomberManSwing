@@ -18,7 +18,7 @@ public class Grass extends Entity {
 
 	public static void initGrass() {
 		sprite = new Sprite("/anhgame.png"); 
-		grass = sprite.getSprite(3, 4); 
+		grass = sprite.getSprite(4, 3); 
 	}
 
 
