@@ -15,8 +15,7 @@ public class EntityManager {
 	public List<Enemy> enemy = new ArrayList<>();
     public List<Wall> wall = new ArrayList<>();
     public List<Grass> grass = new ArrayList<>();
-    public List<Brick> brick = new ArrayList<>();
-    
+    public List<Brick> brick = new ArrayList<>();    
     
     // list các đối tượng
     public static EntityManager instance = new EntityManager();
@@ -33,7 +32,7 @@ public class EntityManager {
         
     }
     public void render(Graphics g) {
-    	
+    
     }
     
     public void update() {

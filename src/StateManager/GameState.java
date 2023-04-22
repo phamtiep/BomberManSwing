@@ -9,17 +9,20 @@ import Config.GameConfig;
 import Enemies.Enemy;
 import Enemies.Ghost;
 import Enemies.Otopus;
+import Enitity.Item;
+import Enitity.SpeedItem;
 import Main.*;
 
 public class GameState extends JPanel {
 
 	Enemy otopus = new Otopus(0,0); 
 	Enemy ghost = new Ghost(1, 1); 
-	
+	Item spi = new SpeedItem(0,0);
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         otopus.render(g);
         ghost.render(g);
+        spi.render(g);
     }
 
     public GameState() {
