@@ -6,7 +6,7 @@ public class SpeedItem extends Item {
 
 	public SpeedItem(int x, int y) {
 		super(x, y);
-		Item = sprite.getSprite(0, 2);
+		Item = sprite.getSprite(1, 0);
 	}
 
 	@Override
