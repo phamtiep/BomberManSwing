@@ -6,7 +6,7 @@ public class Ghost extends Enemy {
 	
 	public Ghost(int x, int y) {
 		super(x, y);
-		animation = new Animation("/anhgame.png", 4, 0, 1000_000_000 , 4); 
+		animation = new Animation("/anhgame.png", 4, 0, 750_000_000 , 4); 
 		initDirectionList(); 
 		animation.setLoop(true); 
 		

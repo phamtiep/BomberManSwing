@@ -40,14 +40,13 @@ public abstract class Enemy extends LivingEntity {
 			if(!deytroyed) {
 				animation.render(g, x, y);
 				animation.update();
-				
 			}
 			
 			
 		}
 		
 		public void update() {
-			if(!alive) {
+			if(alive) {
 				move();
 			}
 		}
@@ -58,6 +57,7 @@ public abstract class Enemy extends LivingEntity {
 			if(i < 0 || i > (map.getHeight() / GameConfig.SIZE_BLOCK) - 1 || j < 0 || j > (map.getWidth() / GameConfig.SIZE_BLOCK) - 1) {
 				return false; 
 			}
+			
 			return map.getHashAt(i, j) == map.getHash("grass"); 
 		}
 		
@@ -85,6 +85,7 @@ public abstract class Enemy extends LivingEntity {
 			case UP: {
 				if (canMoveU) {
 					moveY = -speed;
+					initDirectionList();
 				} else {
 					directionList.remove(Direction.UP);
 				}

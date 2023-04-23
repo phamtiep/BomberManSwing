@@ -22,9 +22,8 @@ public class GameState extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         LeverMap.getInstance().render(g);
-       
         EntityManager.getInstance().render(g);
-       
+        EntityManager.getInstance().update();
         
     }
 

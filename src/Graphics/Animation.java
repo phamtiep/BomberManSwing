@@ -52,7 +52,7 @@ public class Animation {
     public void render(Graphics g, int dX, int dY) {
         if (!done) {
         	
-            g.drawImage(sprite.getSprite(dx + i, cols), dX*32, dY*32, null); 
+            g.drawImage(sprite.getSprite(dx + i, cols), dX, dY, null); 
         }
     }
 

@@ -39,11 +39,11 @@ public class LeverMap {
         for (int i = 0; i < mapHash.length; ++i) {
             for (int j = 0; j < mapHash[i].length; ++j) {
                 if (mapHash[i][j] == getHash("wall")) {
-                    wall.setLocation(j, i);
+                    wall.setLocation(j*32, i*32);
                     wall.render(g);
                 }
                 else{
-                    grass.setLocation(j, i);
+                    grass.setLocation(j*32, i*32);
                     grass.render(g);
                 }
             }
@@ -126,7 +126,7 @@ public class LeverMap {
                     //System.out.println(hash);
                     switch (hash) {
                     case '*': {
-                        brickList.add(new Brick(j, i));
+                        brickList.add(new Brick(j*32, i*32));
                         hash = getHash("grass");
                         break;
                     }
@@ -135,13 +135,13 @@ public class LeverMap {
                         break;
                     }
                     case '1' :{
-                        entitiesManager.enemy.add(new Ghost(j,i));
+                        entitiesManager.enemy.add(new Ghost(j*32,i*32));
                         hash = getHash("grass");
                         break;
                     }
                     
                     case '2' : {
-                        entitiesManager.enemy.add(new Otopus(j,i));
+                        entitiesManager.enemy.add(new Otopus(j*32,i*32));
                         hash = getHash("grass");
                         break;
                     }

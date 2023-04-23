@@ -31,7 +31,7 @@ public class Wall extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(wall , x*32 , y*32 , null); 
+		g.drawImage(wall , x , y, null); 
 	}
 
 	
@@ -45,7 +45,6 @@ public class Wall extends Entity {
 	}
 
     public void setLocation(int i, int j) {
-        // TODO Auto-generated method stub
         x = i ;
         y = j;
     }

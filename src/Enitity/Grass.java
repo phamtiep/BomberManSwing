@@ -30,7 +30,7 @@ public class Grass extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(grass , x* 32 , y * 32, null); 
+		g.drawImage(grass , x , y, null); 
 	}
 
 

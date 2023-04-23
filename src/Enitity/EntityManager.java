@@ -38,7 +38,7 @@ public class EntityManager {
     }
     
     public void update() {
-        // các đối tượng update();
+        enemy.forEach(enemy -> enemy.update());
     }
     
     public void checkCollision() {

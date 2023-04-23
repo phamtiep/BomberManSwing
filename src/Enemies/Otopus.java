@@ -11,7 +11,7 @@ public class Otopus extends Enemy {
 	
 	public Otopus(int x, int y) {
 		super(x, y);
-		animation = new Animation("/anhgame.png", 4, 0, 1000_000_000 , 0); 
+		animation = new Animation("/anhgame.png", 4, 0, 700_000_000 , 0); 
 		initDirectionList();
 		animation.setLoop(true);
 		 currenDirection = Direction.values()[random.nextInt(Direction.values().length)];
@@ -31,11 +31,12 @@ public class Otopus extends Enemy {
 	         canMoveD = checkHashMap(i + 1, j);
 		}
 		checkMove(); 
+		//initDirectionList();
 		if(moveY == 0 && moveX == 0 && directionList.size() != 0) {
 			int ran = random.nextInt(directionList.size());
 			currenDirection = directionList.get(ran);
 		}
 		x += moveX;
-		y += moveY; 
+		y += moveY;
 	}
 }
