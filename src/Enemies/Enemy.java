@@ -17,7 +17,8 @@ import Map.LeverMap;
 
 public abstract class Enemy extends LivingEntity {
 
-    protected Animation animation;
+    protected Animation animationLeft;
+    protected Animation animationRight; 
     protected boolean done = false;
     protected double moveX = 0;
     protected double moveY = 0;
@@ -26,6 +27,7 @@ public abstract class Enemy extends LivingEntity {
     protected boolean canMoveU = false;
     protected boolean canMoveD = false;
     protected Random random = new Random();
+    protected boolean randomAnimation = true; 
 
     protected List<Direction> directionList = new ArrayList<>();
     protected Sprite sheet;
@@ -38,8 +40,13 @@ public abstract class Enemy extends LivingEntity {
 
     public void render(Graphics g) {
         if (!deytroyed) {
-            animation.render(g, x, y);
-            animation.update();
+            if(randomAnimation) {
+            	animationRight.render(g, x, y);
+            	animationRight.update();
+            }else {
+            	animationLeft.render(g, x, y);
+            	animationLeft.update();
+            }
         }
 
     }
@@ -101,6 +108,7 @@ public abstract class Enemy extends LivingEntity {
         case LEFT: {
             if (canMoveL) {
                 moveX = -speed;
+                randomAnimation = false; 
                 initDirectionList();
             } else {
                 directionList.remove(Direction.LEFT);
@@ -110,6 +118,7 @@ public abstract class Enemy extends LivingEntity {
         case RIGHT: {
             if (canMoveR) {
                 moveX = speed;
+                randomAnimation = true; 
                 initDirectionList();
             } else {
                 directionList.remove(Direction.RIGHT);
