@@ -71,7 +71,7 @@ public class Animation {
             int index = (int) (calcTime / timePerFrame);
 
             i = (index % count) ; 
-            System.out.println(timers.getDeltaTime());
+            //System.out.println(timers.getDeltaTime());
             //System.out.println(i);
 
         }

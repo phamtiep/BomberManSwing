@@ -127,11 +127,11 @@ public class LeverMap {
                     switch (hash) {
                     case '*': {
                         brickList.add(new Brick(j*32, i*32));
-                        hash = getHash("grass");
+                      
                         break;
                     }
                     case '#': {
-                        hash = getHash("wall");
+                        
                         break;
                     }
                     case '1' :{

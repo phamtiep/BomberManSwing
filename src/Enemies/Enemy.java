@@ -16,110 +16,108 @@ import Graphics.SpriteSheet;
 import Map.LeverMap;
 
 public abstract class Enemy extends LivingEntity {
-		
-		protected Animation animation; 
-		protected boolean done = false; 
-		protected double moveX = 0; 
-		protected double moveY = 0; 
-		protected boolean canMoveR = false; 
-		protected boolean canMoveL = false; 
-		protected boolean canMoveU = false;
-		protected boolean canMoveD = false; 
-		protected Random random = new Random(); 
-		
-		protected List<Direction> directionList = new ArrayList<>(); 
-		protected Sprite sheet; 
-		protected int score; 
-		
-		public Enemy(int x , int y) {
-			super(x , y); 
-			speed = 1; 
-		}
-		
-		public void render(Graphics g) {
-			if(!deytroyed) {
-				animation.render(g, x, y);
-				animation.update();
-			}
-			
-			
-		}
-		
-		public void update() {
-			if(alive) {
-				move();
-			}
-		}
 
+    protected Animation animation;
+    protected boolean done = false;
+    protected double moveX = 0;
+    protected double moveY = 0;
+    protected boolean canMoveR = false;
+    protected boolean canMoveL = false;
+    protected boolean canMoveU = false;
+    protected boolean canMoveD = false;
+    protected Random random = new Random();
 
-		public boolean checkHashMap(int i , int j) {
-			LeverMap map = LeverMap.getInstance();
-			if(i < 0 || i > (map.getHeight() / GameConfig.SIZE_BLOCK) - 1 || j < 0 || j > (map.getWidth() / GameConfig.SIZE_BLOCK) - 1) {
-				return false; 
-			}
-			
-			return map.getHashAt(i, j) == map.getHash("grass"); 
-		}
-		
-		public boolean checkMapHash(int i , int j) {
-            return canMoveD;
-			
+    protected List<Direction> directionList = new ArrayList<>();
+    protected Sprite sheet;
+    protected int score;
 
-		}
-		
-		protected void initDirectionList() {
-			this.directionList.clear();
-			directionList.add(Direction.UP);
-			directionList.add(Direction.DOWN); 
-			directionList.add(Direction.LEFT); 
-			directionList.add(Direction.RIGHT); 
+    public Enemy(int x, int y) {
+        super(x, y);
+        speed = 1;
+    }
 
-		}
-		
-		protected void checkMove() {
-			if (currenDirection == null) {
-				initDirectionList();
-				return;
-			}
-			switch (currenDirection) {
-			case UP: {
-				if (canMoveU) {
-					moveY = -speed;
-					initDirectionList();
-				} else {
-					directionList.remove(Direction.UP);
-				}
-				break;
-			}
-			case DOWN: {
-				if (canMoveD) {
-					moveY = speed;
-					initDirectionList();
-				} else {
-					directionList.remove(Direction.DOWN);
-				}
-				break;
-			}
-			case LEFT: {
-				if (canMoveL) {
-					moveX = -speed;
-					initDirectionList();
-				} else {
-					directionList.remove(Direction.LEFT);
-				}
-				break;
-			}
-			case RIGHT: {
-				if (canMoveR) {
-					moveX = speed;
-					initDirectionList();
-				} else {
-					directionList.remove(Direction.RIGHT);
-				}
-				break;
-			}
-			default:
-				break;
-			}
-		}
+    public void render(Graphics g) {
+        if (!deytroyed) {
+            animation.render(g, x, y);
+            animation.update();
+        }
+
+    }
+
+    public void update() {
+        if (alive) {
+            move();
+        }
+    }
+
+    public boolean checkHashMap(int i, int j) {
+        LeverMap map = LeverMap.getInstance();
+        if (i < 0 || i > (map.getHeight() / GameConfig.SIZE_BLOCK) - 1 || j < 0
+                || j > (map.getWidth() / GameConfig.SIZE_BLOCK) - 1) {
+            return false;
+        }
+
+        return map.getHashAt(i, j) == map.getHash("grass");
+    }
+
+    public boolean checkMapHash(int i, int j) {
+        return canMoveD;
+
+    }
+
+    protected void initDirectionList() {
+        this.directionList.clear();
+        directionList.add(Direction.UP);
+        directionList.add(Direction.DOWN);
+        directionList.add(Direction.LEFT);
+        directionList.add(Direction.RIGHT);
+
+    }
+
+    protected void checkMove() {
+        if (currenDirection == null) {
+            initDirectionList();
+            return;
+        }
+        switch (currenDirection) {
+        case UP: {
+            if (canMoveU) {
+                moveY = -speed;
+                initDirectionList();
+            } else {
+                directionList.remove(Direction.UP);
+            }
+            break;
+        }
+        case DOWN: {
+            if (canMoveD) {
+                moveY = speed;
+                initDirectionList();
+            } else {
+                directionList.remove(Direction.DOWN);
+            }
+            break;
+        }
+        case LEFT: {
+            if (canMoveL) {
+                moveX = -speed;
+                initDirectionList();
+            } else {
+                directionList.remove(Direction.LEFT);
+            }
+            break;
+        }
+        case RIGHT: {
+            if (canMoveR) {
+                moveX = speed;
+                initDirectionList();
+            } else {
+                directionList.remove(Direction.RIGHT);
+            }
+            break;
+        }
+        default:
+            break;
+        }
+    }
 }
