@@ -13,9 +13,11 @@ public class Otopus extends Enemy {
         super(x, y);
         animationLeft = new Animation("/anhgame.png", 4, 0, 700_000_000, 0);
         animationRight = new Animation("/anhgame.png", 4, 1, 700_000_000, 0); 
+        animationDeath = new Animation("/DeadAnimation.png",4, 2, 600_000_000, 0); 
         initDirectionList();
         animationLeft.setLoop(true);
         animationRight.setLoop(true); 
+        animationDeath.setLoop(true); 
         currenDirection = Direction.values()[random.nextInt(Direction.values().length)];
         score = 100;
 

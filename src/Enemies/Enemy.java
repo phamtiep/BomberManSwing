@@ -19,6 +19,7 @@ public abstract class Enemy extends LivingEntity {
 
     protected Animation animationLeft;
     protected Animation animationRight; 
+    protected Animation animationDeath; 
     protected boolean done = false;
     protected double moveX = 0;
     protected double moveY = 0;
