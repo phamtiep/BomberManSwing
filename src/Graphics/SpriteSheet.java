@@ -20,6 +20,7 @@ public class SpriteSheet {
 			img = ImageIO.read(is);  
 		} catch (Exception e) {
 			 System.out.println("Khong doc duoc anh!");
+			 System.out.println(path);
 		}
 	}
 	
