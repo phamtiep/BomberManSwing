@@ -1,11 +1,7 @@
-package Enitity;
-
-import Graphics.Animation;
+package Bomb;
 
 public class Bomb {
-    Animation 
-    
-    
+
     public Bomb() {
         // TODO Auto-generated constructor stub
     }
