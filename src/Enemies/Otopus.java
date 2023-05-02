@@ -9,7 +9,7 @@ import Config.Direction;
 import Config.GameConfig;
 import Graphics.Animation;
 import Graphics.Sprite;
-import Map.LeverMap;
+import Map.LevelMap;
 
 public class Otopus extends Enemy {
 
@@ -36,7 +36,7 @@ public class Otopus extends Enemy {
             moveX = 0;
             moveY = 0;
             
-            currenDirection = findWay(i, j); 
+            currentDirection = findWay(i, j); 
             canMoveR = checkHashMap(i, j + 1);
             canMoveL = checkHashMap(i, j - 1);
             canMoveU = checkHashMap(i - 1, j);
@@ -56,7 +56,7 @@ public class Otopus extends Enemy {
     }
     
     private Direction findWay(int i, int j) {
-        LeverMap levelMap = LeverMap.getInstance();
+        LevelMap levelMap = LevelMap.getInstance();
         boolean[][] checkPass =
                 new boolean[levelMap.getMapHash().length][levelMap.getMapHash()[0].length];
 
