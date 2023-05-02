@@ -18,7 +18,7 @@ public class Wall extends Entity {
 	}
 	
 	public void initWall() {
-		sprite = new Sprite("/anhgame.png"); 
+		sprite = new Sprite("/anhgame.png",1); 
 		wall = sprite.getSprite(5, 3); 
 	}
 	

@@ -13,7 +13,7 @@ public class Animation {
     private final int count; 
     private final int cols; 
     private int i = 0; 
-    private int dx = 0; // toa do bat dau chay cua i 
+    private int row = 0; // toa do bat dau chay cua i 
     
      private float calcTime;
 
@@ -26,16 +26,26 @@ public class Animation {
  
     private Timers timers;
     
-    public Animation(String path , int count, int colums,  int totalTime , int dx) {
-    	sprite = new Sprite(path); 
+    public Animation(String path , int count, int colums,  int totalTime , int row) {
+    	  sprite = new Sprite(path,count); 
         this.count = count;
         this.cols = colums; 
         this.totalTime = totalTime;
-        this.dx = dx; 
+        this.row = row; 
         timers = Timers.getInstance();
         timePerFrame = totalTime / count;
         reset();
     }
+    public Animation(String path , int count, int colums,  int totalTime , int row,int width , int height) {
+          sprite = new Sprite(path,width,height,count); 
+          this.count = count;
+          this.cols = colums; 
+          this.totalTime = totalTime;
+          this.row = row; 
+          timers = Timers.getInstance();
+          timePerFrame = totalTime / count;
+          reset();
+      }
 
     public void reset() {
         done = false;
@@ -52,7 +62,7 @@ public class Animation {
     public void render(Graphics g, int dX, int dY) {
         if (!done) {
         	
-            g.drawImage(sprite.getSprite(dx + i, cols), dX, dY, null); 
+            g.drawImage(sprite.getSprite(row + i, cols), dX, dY, null); 
         }
     }
 

@@ -49,7 +49,7 @@ public class Brick extends Entity {
 
 
 	private void initBrick() {
-		sprite = new Sprite("/anhgame.png"); 
+		sprite = new Sprite("/anhgame.png",1); 
 		brick = sprite.getSprite(0, 3); 
 	}
 	

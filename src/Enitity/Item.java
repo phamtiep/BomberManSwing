@@ -10,7 +10,7 @@ public abstract class Item extends Entity {
 	//protected int _duration
 	public Item(int x, int y) {
 		super(x,y);
-		sprite = new Sprite("/ItemBomberMan.png");
+		sprite = new Sprite("/ItemBomberMan.png",1);
 	}
 	
 	

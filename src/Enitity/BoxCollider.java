@@ -5,12 +5,18 @@ import Config.GameConfig;
 public class BoxCollider {
     private int x;
     private int y;
-    private final double width = 32;
-    private final double height = 32;
+    private  int width = 32;
+    private int height = 32;
 
-    public BoxCollider(int x, int y) {
+    public BoxCollider(int x, int y ) {
         this.x = x;
         this.y = y;
+    }
+    public BoxCollider(int x, int y, int width, int height ) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
     public double getX() {

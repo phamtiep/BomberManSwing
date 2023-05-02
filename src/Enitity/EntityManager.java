@@ -35,11 +35,12 @@ public class EntityManager {
     public void render(Graphics g) {
       enemy.forEach(enemy -> enemy.render(g));
       brick.forEach(brick -> brick.render(g));
-    
+      bomber.render(g);
     }
     
     public void update() {
         enemy.forEach(enemy -> enemy.update());
+        bomber.update();
     }
     
     public void checkCollision() {

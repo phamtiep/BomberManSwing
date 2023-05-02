@@ -98,14 +98,16 @@ public class LevelMap {
         case "wall":
             output = '#';
             break;
-      
+        case "bomb" :
+             output = 'b';
+              break;
         default:
             break;
         }
         return output;
     }
 
-    public void inputLever() {
+    public void inputLevel() {
 
         List<Brick> brickList = entitiesManager.brick;
         String tile = null;
@@ -115,7 +117,7 @@ public class LevelMap {
             Scanner scanner = new Scanner(input);
             int cols = scanner.nextInt();
             int rows = scanner.nextInt();
-           String temp = scanner.nextLine();
+            String temp = scanner.nextLine();
            
             mapHash = new char[rows][cols];
                 //System.out.println(rows + " " + cols);
@@ -123,8 +125,9 @@ public class LevelMap {
                 tile = scanner.nextLine(); // lay 1 hang
                 //System.out.println(tile);
                 for (int j = 0; j < cols; j++) {
+                    //System.out.println(j);
                     char hash = tile.charAt(j); // doc tung phan tu
-                    //System.out.println(hash);
+                   
                     switch (hash) {
                     case '*': {
                         brickList.add(new Brick(j*32, i*32));
@@ -153,7 +156,8 @@ public class LevelMap {
                     }
                     case 'p' :{
                         hash = getHash("grass");
-                        EntityManager.getInstance().bomber = new Bomber(j, i);
+                       EntityManager.getInstance().bomber = new Bomber(j*32, i*32);
+                        break;
                     }
                     default:
                         break;

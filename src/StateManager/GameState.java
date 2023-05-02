@@ -33,23 +33,7 @@ public class GameState extends JPanel {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                case(KeyEvent.VK_UP):
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.UP);
-                    break;
-                case(KeyEvent.VK_DOWN):
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.DOWN);
-                    break;
-                case(KeyEvent.VK_LEFT):
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.LEFT);
-                    break;
-                case(KeyEvent.VK_RIGHT):
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.RIGHT);
-                    break;
-
-                default:
-                    break;
-                }
+               
             }
 
             @Override
@@ -60,8 +44,27 @@ public class GameState extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                // TODO Auto-generated method stub
+                switch (e.getKeyCode()) {
+                case(KeyEvent.VK_W):{
+                    
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.UP);
+                   
+                }
+                    break;
+                case(KeyEvent.VK_S):
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.DOWN);
+                    break;
+                case(KeyEvent.VK_A):
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.LEFT);
+                    break;
+                case(KeyEvent.VK_D):
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.RIGHT);
+                    break;
 
+                default:
+                    break;
+                }
+                
             }
         };
         this.addKeyListener(inp);

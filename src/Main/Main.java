@@ -69,7 +69,7 @@ public class Main extends JFrame implements  Runnable {
       }
     }
     public static void main(String args[]) {
-        LevelMap.getInstance().inputLever();
+        LevelMap.getInstance().inputLevel();
         Main.getInstance().startGame();
     }
 }
