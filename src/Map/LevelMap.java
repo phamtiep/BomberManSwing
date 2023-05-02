@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.util.List;
 import java.util.Scanner;
 
+import Boomber.Bomber;
 import Config.GameConfig;
 import Enemies.Enemy;
 import Enemies.Ghost;
@@ -15,7 +16,7 @@ import Enitity.EntityManager;
 import Enitity.Grass;
 import Enitity.Wall;
 
-public class LeverMap {
+public class LevelMap {
     private char[][] mapHash = new char[21][21];
     private Grass grass = new Grass(0, 0);
     private Wall wall = new Wall(0, 0);
@@ -23,10 +24,10 @@ public class LeverMap {
     private final EntityManager entitiesManager = EntityManager.getInstance();
 
     private static class SingletonHelper {
-        private static final LeverMap INSTANCE = new LeverMap();
+        private static final LevelMap INSTANCE = new LevelMap();
     }
 
-    public static LeverMap getInstance() {
+    public static LevelMap getInstance() {
         return SingletonHelper.INSTANCE;
     }
 
@@ -149,6 +150,10 @@ public class LeverMap {
                     case ' ' : {
                         hash = getHash("grass");
                         break;
+                    }
+                    case 'p' :{
+                        hash = getHash("grass");
+                        EntityManager.getInstance().bomber = new Bomber(j, i);
                     }
                     default:
                         break;

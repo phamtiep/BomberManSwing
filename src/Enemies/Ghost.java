@@ -3,7 +3,7 @@ package Enemies;
 import Config.Direction;
 import Config.GameConfig;
 import Graphics.Animation;
-import Map.LeverMap;
+import Map.LevelMap;
 
 public class Ghost extends Enemy {
 	
@@ -36,7 +36,7 @@ public class Ghost extends Enemy {
 	            // initDirectionList();
 	            if (moveY == 0 && moveX == 0 && directionList.size() != 0) {
 	                int ran = random.nextInt(directionList.size());
-	                currenDirection = directionList.get(ran);
+	                currentDirection = directionList.get(ran);
 	            }
 	        }
 	        x += moveX;
@@ -46,11 +46,11 @@ public class Ghost extends Enemy {
 	// override lai ham checkmove
 	@Override
 	 protected void checkMove() {
-        if (currenDirection == null) {
+        if (currentDirection == null) {
             initDirectionList();
             return;
         }
-        switch (currenDirection) {
+        switch (currentDirection) {
         case UP: {
             if (canMoveU) {
                 moveY = -speed;

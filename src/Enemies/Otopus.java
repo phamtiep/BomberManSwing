@@ -18,7 +18,7 @@ public class Otopus extends Enemy {
         animationLeft.setLoop(true);
         animationRight.setLoop(true); 
         animationDeath.setLoop(true); 
-        currenDirection = Direction.values()[random.nextInt(Direction.values().length)];
+        currentDirection = Direction.values()[random.nextInt(Direction.values().length)];
         score = 100;
 
     }
@@ -40,7 +40,7 @@ public class Otopus extends Enemy {
             // initDirectionList();
             if (moveY == 0 && moveX == 0 && directionList.size() != 0) {
                 int ran = random.nextInt(directionList.size());
-                currenDirection = directionList.get(ran);
+                currentDirection = directionList.get(ran);
             }
         }
         x += moveX;

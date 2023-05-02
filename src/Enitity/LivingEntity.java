@@ -8,7 +8,7 @@ public abstract class LivingEntity extends Entity {
 	protected int live; 
 	protected boolean deytroyed = false;
 	protected boolean moving = false;
-	protected Direction currenDirection; 
+	protected Direction currentDirection; 
 	
 	public LivingEntity(int x , int y) {
 		super(x , y);
@@ -42,11 +42,11 @@ public abstract class LivingEntity extends Entity {
 	} 
 	
 	public Direction getCurrenDirection() {
-		return this.currenDirection; 
+		return this.currentDirection; 
 	}
 	
 	public void setCurrenDirection(Direction other) {
-		this.currenDirection = other; 
+		this.currentDirection = other; 
 	}
 	
 	

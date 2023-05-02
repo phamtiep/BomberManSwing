@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import Config.GameConfig;
-import Map.LeverMap;
+import Map.LevelMap;
 import StateManager.StateManager;
 import StateManager.StateManager.State;
 import Time.Timers;
@@ -69,7 +69,7 @@ public class Main extends JFrame implements  Runnable {
       }
     }
     public static void main(String args[]) {
-        LeverMap.getInstance().inputLever();
+        LevelMap.getInstance().inputLever();
         Main.getInstance().startGame();
     }
 }

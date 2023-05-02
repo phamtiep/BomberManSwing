@@ -13,7 +13,7 @@ import Enitity.LivingEntity;
 import Graphics.Animation;
 import Graphics.Sprite;
 import Graphics.SpriteSheet;
-import Map.LeverMap;
+import Map.LevelMap;
 
 public abstract class Enemy extends LivingEntity {
 
@@ -59,7 +59,7 @@ public abstract class Enemy extends LivingEntity {
     }
 
     public boolean checkHashMap(int i, int j) {
-        LeverMap map = LeverMap.getInstance();
+        LevelMap map = LevelMap.getInstance();
         if (i < 0 || i > (map.getHeight() / GameConfig.SIZE_BLOCK) - 1 || j < 0
                 || j > (map.getWidth() / GameConfig.SIZE_BLOCK) - 1) {
             return false;
@@ -83,11 +83,11 @@ public abstract class Enemy extends LivingEntity {
     }
 
     protected void checkMove() {
-        if (currenDirection == null) {
+        if (currentDirection == null) {
             initDirectionList();
             return;
         }
-        switch (currenDirection) {
+        switch (currentDirection) {
         case UP: {
             if (canMoveU) {
                 moveY = -speed;

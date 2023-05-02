@@ -4,9 +4,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
+import Boomber.Bomber;
 import Enemies.Enemy;
 import Enemies.Otopus;
-import Map.LeverMap;
+import Map.LevelMap;
 
 public class EntityManager {
 	
@@ -16,7 +17,7 @@ public class EntityManager {
 	public List<Enemy> enemy = new ArrayList<>();
     
     public List<Brick> brick = new ArrayList<>();    
-    
+    public Bomber bomber;
     // list các đối tượng
     public static EntityManager instance = new EntityManager();
     

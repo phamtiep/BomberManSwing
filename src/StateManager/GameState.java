@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import Config.Direction;
 import Config.GameConfig;
 import Enemies.Enemy;
 import Enemies.Ghost;
@@ -13,15 +14,15 @@ import Enitity.EntityManager;
 import Enitity.Item;
 import Item.SpeedItem;
 import Main.*;
-import Map.LeverMap;
+import Map.LevelMap;
 
 public class GameState extends JPanel {
 
 	
-	LeverMap map = LeverMap.getInstance(); 
+	LevelMap map = LevelMap.getInstance(); 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        LeverMap.getInstance().render(g);
+        LevelMap.getInstance().render(g);
         EntityManager.getInstance().render(g);
         EntityManager.getInstance().update();
         
@@ -32,7 +33,23 @@ public class GameState extends JPanel {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                
+                switch (e.getKeyCode()) {
+                case(KeyEvent.VK_UP):
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.UP);
+                    break;
+                case(KeyEvent.VK_DOWN):
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.DOWN);
+                    break;
+                case(KeyEvent.VK_LEFT):
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.LEFT);
+                    break;
+                case(KeyEvent.VK_RIGHT):
+                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.RIGHT);
+                    break;
+
+                default:
+                    break;
+                }
             }
 
             @Override
