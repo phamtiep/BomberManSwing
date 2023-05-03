@@ -44,7 +44,7 @@ public class Bomber extends LivingEntity {
     private int bombMax = 100;
     
     Action playerAction;
-    static String  path = "/newBomberManChar.png";
+    static String  path = "/final.png";
 
  //   protected Action playerAction = Action.IDLE;
    
@@ -78,13 +78,13 @@ public class Bomber extends LivingEntity {
 
     public static void init() {
         try {
-            animationLeft = new Animation(path,5, 2, 750_000_000, 0,24,32);
+            animationLeft = new Animation(path,5, 2, 750_000_000, 0,26,35);
             animationLeft.setLoop(true);
-            animationRight = new Animation(path,5, 3, 750_000_000, 0,24,32);
+            animationRight = new Animation(path,5, 3, 750_000_000, 0,26,35);
             animationRight.setLoop(true);
-            animationUp = new Animation(path,3, 0, 750_000_000, 0,24,32);
+            animationUp = new Animation(path,3, 0, 750_000_000, 0,26,35);
             animationUp.setLoop(true);
-            animationDown = new Animation(path,3, 1, 750_000_000, 0,24,32);
+            animationDown = new Animation(path,3, 1, 750_000_000, 0,26,35);
             animationDown.setLoop(true);
         }
         catch(Exception e) {
@@ -259,7 +259,7 @@ public class Bomber extends LivingEntity {
         int leftCol = (int) (bomberBox.getX()+1) / GameConfig.SIZE_BLOCK;
         int rightCol = (int) (bomberBox.getX() + bomberBox.getWidth()-1) /  GameConfig.SIZE_BLOCK;
         int topRow = (int) (bomberBox.getY()+16) /  GameConfig.SIZE_BLOCK;
-        int bottomRow = (int) (bomberBox.getY() + bomberBox.getHeight()-1) /  GameConfig.SIZE_BLOCK;
+        int bottomRow = (int) (bomberBox.getY() + bomberBox.getHeight()) /  GameConfig.SIZE_BLOCK;
         //System.out.println(currentDirection);
         //Barrier checker.
         boolean topLeftCheck = checkBarrier(topRow, leftCol);
@@ -307,10 +307,10 @@ public class Bomber extends LivingEntity {
             
         }
 
-      if(levelMap.getHashAt(i, j)== levelMap.getHash("wall")) {
-          System.out.println(x + " " + y);
-          System.out.println( i + " " + j);
-      }
+//      if(levelMap.getHashAt(i, j)== levelMap.getHash("wall")) {
+//          System.out.println(x + " " + y);
+//          System.out.println( i + " " + j);
+//      }
         return levelMap.getHashAt(i, j) == levelMap.getHash("wall");
     }
     public void reset() {
