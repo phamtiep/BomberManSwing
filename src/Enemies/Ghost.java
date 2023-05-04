@@ -9,8 +9,8 @@ public class Ghost extends Enemy {
 	
 	public Ghost(int x, int y) {
 		super(x, y);
-		animationLeft = new Animation("/anhgame.png", 4, 0, 750_000_000 , 4); 
-		animationRight = new Animation("/anhgame.png", 4, 1, 750_000_000 , 4); 
+		animationLeft = new Animation("/Anhgame.png", 4, 0, 750_000_000 , 4); 
+		animationRight = new Animation("/Anhgame.png", 4, 1, 750_000_000 , 4); 
 		animationDeath = new Animation("/NewDeadAnimation.png", 3, 0, 750_000_000, 0); 
 		initDirectionList(); 
 		animationLeft.setLoop(true);

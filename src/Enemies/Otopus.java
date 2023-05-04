@@ -7,6 +7,7 @@ import java.util.Queue;
 
 import Config.Direction;
 import Config.GameConfig;
+import Enitity.EntityManager;
 import Graphics.Animation;
 import Graphics.Sprite;
 import Map.LevelMap;
@@ -70,9 +71,12 @@ public class Otopus extends Enemy {
                 
             }
         }
-        int iBomber =1; 
-        int jBomber = 1; 
+        double bomberX = EntityManager.getInstance().bomber.getX();
+        double bomberY = EntityManager.getInstance().bomber.getY();
 
+        int jBomber = (int) (bomberX + GameConfig.SIZE_BLOCK / 2) / GameConfig.SIZE_BLOCK;
+        int iBomber = (int) (bomberY + GameConfig.SIZE_BLOCK/ 2) / GameConfig.SIZE_BLOCK;
+        
         canMoveR = checkMapHash(i, j + 1);
         canMoveL = checkMapHash(i, j - 1);
         canMoveU = checkMapHash(i - 1, j);
