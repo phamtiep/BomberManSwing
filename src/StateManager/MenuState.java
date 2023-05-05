@@ -71,6 +71,7 @@ public class MenuState extends JPanel {
 			}
 		};
 		this.addMouseMotionListener(mouseCheck);
+	
 	}
 
 

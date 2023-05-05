@@ -14,7 +14,7 @@ import Time.Timers;
 
 public class Bomb extends Entity {
     public static boolean initialized = false;
-    public static final int DEFAULT_FLAME_LENGTH = 3;
+    public static final int DEFAULT_FLAME_LENGTH = 1;
     public Animation img = new Animation("/anhgame.png", 3, 2, 1000_000_000, 0,2);
 
     private final List<Flame> flameList = new ArrayList<>();
@@ -40,8 +40,8 @@ public class Bomb extends Entity {
 //        if((x+26)%GameConfig.SIZE_BLOCK == 0)x--;
         if((y+35)%GameConfig.SIZE_BLOCK == 0)this.y--;
       if((x+26)%GameConfig.SIZE_BLOCK==0)this.x--;
-        System.out.println((x+26)%GameConfig.SIZE_BLOCK);
-        System.out.println((y+26)%GameConfig.SIZE_BLOCK);
+//        System.out.println((x+26)%GameConfig.SIZE_BLOCK);
+//        System.out.println((y+26)%GameConfig.SIZE_BLOCK);
         this.x *= GameConfig.SIZE_BLOCK;
         this.y *= GameConfig.SIZE_BLOCK;
         

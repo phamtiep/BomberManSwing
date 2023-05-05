@@ -34,11 +34,15 @@ public class StateManager {
             this.menuState.setVisible(true);
             this.gameState.setVisible(false);
             menuState.setFocusable(true);
+            gameState.setFocusable(false);
+            this.gameState.requestFocusInWindow();
         }
         else {
             this.menuState.setVisible(false);
             this.gameState.setVisible(true);
             gameState.setFocusable(true);
+            this.gameState.requestFocusInWindow();
+            menuState.setFocusable(false);
         }
         
     }
