@@ -18,7 +18,7 @@
 # #	# #	#*#*# #	#*# #	
 # * * *      *  *  *#
 # #*# #*#*# # #*#*#*#	
-#   * *   *  *  2*  #
+#   * *  3*  *  2*  #
 #####################
 
 2/ R dòng tiếp theo, mỗi dòng có C kí tự. Mỗi kí tự đại diện cho một đối tượng trên bản đồ:
@@ -30,5 +30,5 @@ Character:
 p - Bomber
 1 - Ghost
 2 - Octopus
-
+3 - BossCrap
 
