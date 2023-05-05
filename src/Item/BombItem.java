@@ -1,5 +1,7 @@
 package Item;
 
+import Boomber.Bomber;
+import Enitity.EntityManager;
 import Enitity.Item;
 
 public class BombItem  extends Item{
@@ -11,8 +13,12 @@ public class BombItem  extends Item{
 	}
 	
 	@Override
-	public void remove() {
-		
+	public void changePower() {
+		Bomber bomber = EntityManager.getInstance().bomber;
+		if(bomber.getBombMax()<10) {
+			bomber.setBombMax(bomber.getBombMax()+1);
+		}
+		done = true;
 	}
 
 }
