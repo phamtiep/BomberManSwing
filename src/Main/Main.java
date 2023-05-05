@@ -30,7 +30,7 @@ public class Main extends JFrame implements  Runnable {
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        StateManager.getInstance().setCurrentState(State.GAME);
+        StateManager.getInstance().setCurrentState(State.MENU);
         this.setVisible(true);
         Thread gameThread = new Thread(this);
         gameThread.start();
