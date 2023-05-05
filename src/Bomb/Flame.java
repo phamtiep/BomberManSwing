@@ -2,71 +2,79 @@ package Bomb;
 
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Image;
+
+
 
 import Enitity.Entity;
-import uet.oop.bomberman.components.graphics.Sprite;
-import uet.oop.bomberman.core.Timers;
+import Graphics.SpriteSheet;
+
 
 public class Flame extends Entity {
 
-   static sprite 
+    public Image img  = null;
+    public static final int dispTime = 30_000;
+  
+    public enum FlameDirection {
+        UP, DOWN, LEFT, RIGHT, CENTER
+    }
+    public boolean isLast;
+    public static SpriteSheet inp = new SpriteSheet("/anhgame.png");
     
-
+    public Flame(int x, int y, FlameDirection direction, boolean isLast) {
+        this.x = x;
+        this.y = y;
+        switch (direction) {
+        case UP:
+            if(isLast)img = inp.getSprite(1, 5);
+            else {
+                img = inp.getSprite(1, 6);
+            }
+            break;
+        case CENTER:
+            if(isLast)img = inp.getSprite(1, 5);
+            else {
+                img = inp.getSprite(1, 6);
+            }
+            break;
+        case LEFT:
+            if(isLast)img = inp.getSprite(1, 5);
+            else {
+                img = inp.getSprite(1, 6);
+            }
+            break;
+        case DOWN:
+            if(isLast)img = inp.getSprite(1, 5);
+            else {
+                img = inp.getSprite(1, 6);
+            }
+            break;
+        case RIGHT:
+            if(isLast)img = inp.getSprite(1, 5);
+            else {
+                img = inp.getSprite(1, 6);
+            }
+            break;
+        default:
+            break;
+        }
+    }
 
     @Override
     public void render(Graphics g) {
         // TODO Auto-generated method stub
         
+        g.drawImage(img, x,y,null);
+        
+    }
+
+
+
+    @Override
+    public void update() {
+        
     }
     
-   @Override
-   public void update() {
-       time += Timers.getInstance().getDeltaTime();
-       if (time <= flameTime) {
-           switch (flameDirection) {
-               case UP:
-                   if (last) {
-                       System.out.println("up");
-
-                       image = Sprite.animation(explosionVerticalTopLast, time, flameTime);
-                   } else {
-                                              image = Sprite.animation(explosionVertical, time, flameTime);
-                   }
-                   break;
-               case DOWN:
-                   if (last) {
-                       image = Sprite.animation(explosionVerticalDownLast, time, flameTime);
-                   } else {
-                       System.out.println("down");
-                       image = Sprite.animation(explosionVertical, time, flameTime);
-                   }
-                   break;
-               case LEFT:
-                   if (last) {
-                       image = Sprite.animation(explosionHorizontalLeftLast, time, flameTime);
-                   } else {
-                       image = Sprite.animation(explosionHorizontal, time, flameTime);
-                   }
-                   break;
-               case RIGHT:
-                   if (last) {
-                       image = Sprite.animation(explosionHorizontalRightLast, time, flameTime);
-                   } else {
-                       image = Sprite.animation(explosionHorizontal, time, flameTime);
-                   }
-                   break;
-               case CENTER:
-                   image = Sprite.animation(bombExploded, time, flameTime);
-                   break;
-               default:
-                   break;
-           }
-       } else {
-           image = null;
-           done = true;
-       }
-   }
+   
  
 }

@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import Bomb.Bomb;
 import Config.Direction;
 import Config.GameConfig;
 import Enemies.Enemy;
@@ -44,23 +45,28 @@ public class GameState extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
+               EntityManager entityManager =  EntityManager.getInstance();
                 switch (e.getKeyCode()) {
                 case(KeyEvent.VK_W):{
                     
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.UP);
+                    entityManager.bomber.setCurrenDirection(Direction.UP);
                    
                 }
                     break;
                 case(KeyEvent.VK_S):
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.DOWN);
+                    entityManager.bomber.setCurrenDirection(Direction.DOWN);
                     break;
                 case(KeyEvent.VK_A):
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.LEFT);
+                    entityManager.bomber.setCurrenDirection(Direction.LEFT);
                     break;
                 case(KeyEvent.VK_D):
-                    EntityManager.getInstance().bomber.setCurrenDirection(Direction.RIGHT);
+                    entityManager.bomber.setCurrenDirection(Direction.RIGHT);
                     break;
-
+                case(KeyEvent.VK_SPACE) : {
+                   
+                   entityManager.bombs.add(new Bomb(entityManager.bomber.getX(), entityManager.bomber.getY()));
+                   
+                }
                 default:
                     break;
                 }

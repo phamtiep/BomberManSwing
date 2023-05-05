@@ -42,7 +42,10 @@ public class Bomber extends LivingEntity {
     private int frameCounter;
     private boolean canResetLocation = false;
     private int bombMax = 100;
-    
+    int leftCol ;
+    int rightCol ;
+    int topRow ;
+    int bottomRow;
     Action playerAction;
     static String  path = "/final.png";
 
@@ -64,7 +67,7 @@ public class Bomber extends LivingEntity {
        // lives = DEFAULT_LIVES;
         playerAction = Action.MOVING;
         
-        bomberBox = new BoxCollider(x, y,21,32);
+        bomberBox = new BoxCollider(x, y,26,35);
         updateBoxCollider();
         
     }
@@ -145,8 +148,8 @@ public class Bomber extends LivingEntity {
 //        double centerX = bomberBox.getX() + bomberBox.getWidth() / 2;
 //        double centerY = bomberBox.getY() + bomberBox.getHeight() / 2;
 //
-//        if (LeverMap.getInstance().getHashAt((int) centerY / GameConfig.SIZE_BLOCK, (int) centerX / GameConfig.SIZE_BLOCK)
-//            != LeverMap.getInstance().getHash("grass")) {
+//        if (LevelMap.getInstance().getHashAt((int) centerY / GameConfig.SIZE_BLOCK, (int) centerX / GameConfig.SIZE_BLOCK)
+//            != LeveMap.getInstance().getHash("grass")) {
 //            return;
 //        }
 //        if (bombList.size() < bombMax) {
@@ -256,10 +259,10 @@ public class Bomber extends LivingEntity {
 
         updateBoxCollider();
 
-        int leftCol = (int) (bomberBox.getX()+1) / GameConfig.SIZE_BLOCK;
-        int rightCol = (int) (bomberBox.getX() + bomberBox.getWidth()-1) /  GameConfig.SIZE_BLOCK;
-        int topRow = (int) (bomberBox.getY()+16) /  GameConfig.SIZE_BLOCK;
-        int bottomRow = (int) (bomberBox.getY() + bomberBox.getHeight()) /  GameConfig.SIZE_BLOCK;
+        leftCol = (int) (bomberBox.getX()) / GameConfig.SIZE_BLOCK;
+        rightCol = (int) (bomberBox.getX() + bomberBox.getWidth()) /  GameConfig.SIZE_BLOCK;
+        topRow = (int) (bomberBox.getY()+16) /  GameConfig.SIZE_BLOCK;
+        bottomRow = (int) (bomberBox.getY() + bomberBox.getHeight()) /  GameConfig.SIZE_BLOCK;
         //System.out.println(currentDirection);
         //Barrier checker.
         boolean topLeftCheck = checkBarrier(topRow, leftCol);
@@ -296,6 +299,7 @@ public class Bomber extends LivingEntity {
 //        if (levelMap.getHashAt(i, j) == levelMap.getHash("grass")) {
 //            System.out.println("grass");
 //        }
+        
         if (levelMap.getHashAt(i, j) == levelMap.getHash("bomb")) {
             
             return !canPassBomb;

@@ -15,15 +15,15 @@ public class Animation {
     private int i = 0; 
     private int row = 0; // toa do bat dau chay cua i 
     
-     private float calcTime;
+     private int calcTime;
 
-    private float totalTime;
+    private int totalTime;
 
     private int timePerFrame;
-   
+    
     private boolean done = false;
     private boolean loop;
- 
+    private int speedIncrementAnimationSpeed = 1;
     private Timers timers;
     
     public Animation(String path , int count, int colums,  int totalTime , int row) {
@@ -34,6 +34,18 @@ public class Animation {
         this.row = row; 
         timers = Timers.getInstance();
         timePerFrame = totalTime / count;
+        this.speedIncrementAnimationSpeed = 1;
+        reset();
+    }
+    public Animation(String path , int count, int colums,  int totalTime , int row,int speedIncrementAnimationSpeed) {
+        sprite = new Sprite(path,count); 
+        this.count = count;
+        this.cols = colums; 
+        this.totalTime = totalTime;
+        this.row = row; 
+        timers = Timers.getInstance();
+        timePerFrame = totalTime / count;
+        this.speedIncrementAnimationSpeed = speedIncrementAnimationSpeed;
         reset();
     }
     public Animation(String path , int count, int colums,  int totalTime , int row,int width , int height) {
@@ -44,12 +56,25 @@ public class Animation {
           this.row = row; 
           timers = Timers.getInstance();
           timePerFrame = totalTime / count;
+          this.speedIncrementAnimationSpeed = 1;
           reset();
       }
+    
+    public Animation(String path , int count, int colums,  int totalTime , int row,int width , int height,int speedIncrementAnimationSpeed) {
+        sprite = new Sprite(path,width,height,count); 
+        this.count = count;
+        this.cols = colums; 
+        this.totalTime = totalTime;
+        this.row = row; 
+        timers = Timers.getInstance();
+        timePerFrame = totalTime / count;
+        this.speedIncrementAnimationSpeed = 2;
+        reset();
+    }
 
     public void reset() {
         done = false;
-        calcTime = 0.0f;
+        calcTime = 0;
         loop = false;
     }
 
@@ -71,16 +96,24 @@ public class Animation {
             calcTime += timers.getDeltaTime();
             if (calcTime >= totalTime) {
                 if (loop) {
-                    calcTime = 0.0f;
+                    calcTime = 0;
+                    timePerFrame /= this.speedIncrementAnimationSpeed;
                 } else {
                     done = true;
                     // stop at last animation then say that the animation is done
                     calcTime = totalTime - timePerFrame;
                 }
             }
-            int index = (int) (calcTime / timePerFrame);
-
+            int index = 1;
+            try {
+             index = (int) (calcTime / timePerFrame);
+            }
+            catch (Exception e) {
+               System.out.println(e.toString());
+            }
             i = (index % count) ; 
+            if(speedIncrementAnimationSpeed!=1)
+            System.out.println(timePerFrame);
             //System.out.println(timers.getDeltaTime());
             //System.out.println(i);
 
@@ -99,6 +132,11 @@ public class Animation {
         this.loop = loop;
     }
 
+    
+    public int getTotalTime() {
+        return totalTime;
+    }
+    
     public float getCalcTime() {
         return calcTime;
     }

@@ -1,38 +1,78 @@
 package Bomb;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import Config.GameConfig;
 import Enitity.Entity;
+import Enitity.EntityManager;
+import Graphics.Animation;
 import Map.LevelMap;
-
+import Time.Timers;
 
 public class Bomb extends Entity {
     public static boolean initialized = false;
     public static final int DEFAULT_FLAME_LENGTH = 3;
-    private Image image;
-    private static List<Image> bombs;
-    private LevelMap levelMap = LevelMap.getInstance();
+    public Animation img = new Animation("/anhgame.png", 3, 2, 1000_000_000, 0,2);
+
     private final List<Flame> flameList = new ArrayList<>();
-    private boolean allowPass = true;  // cho phép bomber vượt qua
-    private boolean explode = false;
+
+    
     private static int flameLength = DEFAULT_FLAME_LENGTH;
-    private double timeBeforeExplode = 2000;
-    private final double flameTime = 500;
-    private boolean hasFlame = false;
+    private double timeBeforeExplode = 2000_000_000;
+    private int flameTime = 500_000_000;
     private double time = 0;
-    private boolean done = false;
-    
-    public Bomb() {
-        // TODO Auto-generated constructor stub
+    /**
+     * @param time the time to set
+     */
+    public void setTime(double time) {
+        this.time = time;
     }
-    
+
+    private boolean done = false;
+    private boolean isAddFlame = false;
+
+    public Bomb(int x, int y) {
+        this.x = ((x +26)/ GameConfig.SIZE_BLOCK) ;
+        this.y = ((y + 35)/ GameConfig.SIZE_BLOCK )  ;
+//        if((x+26)%GameConfig.SIZE_BLOCK == 0)x--;
+        if((y+35)%GameConfig.SIZE_BLOCK == 0)this.y--;
+      if((x+26)%GameConfig.SIZE_BLOCK==0)this.x--;
+        System.out.println((x+26)%GameConfig.SIZE_BLOCK);
+        System.out.println((y+26)%GameConfig.SIZE_BLOCK);
+        this.x *= GameConfig.SIZE_BLOCK;
+        this.y *= GameConfig.SIZE_BLOCK;
+        
+        LevelMap.getInstance().setHashAt(this.y/32, this.x/32, "bomb");
+        img.setLoop(true);
+    }
+
+    public void setTimeExplodeBomb(double x, double y) {
+        List<Bomb> bombList = EntityManager.getInstance().bombs;
+        for (int i = 0; i < bombList.size(); i++) {
+            if (bombList.get(i).getX() == x && bombList.get(i).getY() == y) {
+                bombList.get(i).setTimeBeforeExplode(bombList.get(i).getTime() + 5_0000000);
+                bombList.get(i).setTime(0);
+            }
+        }
+    }
+
+    public void setTimeBeforeExplode(int i) {
+        timeBeforeExplode = i;
+    }
+
+    private int getTime() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
     private void explosion() {
-        
-        LevelMap levelMap  = LevelMap.getInstance();
-        hasFlame = true;
-        
-        flameList.add(new Flame(x, y, width, height, Flame.FlameDirection.CENTER, false));
+
+        LevelMap levelMap = LevelMap.getInstance();
+
+        flameList.add(new Flame(x, y, Flame.FlameDirection.CENTER, false));
 
         // check left
         int l = 1;
@@ -52,13 +92,13 @@ public class Bomb extends Entity {
         }
         for (int i = 1; i < l; i++) {
             if (i != (l - 1)) {
-                flameList.add(new Flame(x - 32 * i, y, width, height, Flame.FlameDirection.LEFT, false));
+                flameList.add(new Flame(x - 32 * i, y, Flame.FlameDirection.LEFT, false));
             } else {
-                flameList.add(new Flame(x - 32 * i, y, width, height, Flame.FlameDirection.LEFT, true));
+                flameList.add(new Flame(x - 32 * i, y, Flame.FlameDirection.LEFT, true));
             }
         }
 
-        //check right
+        // check right
         int r = 1;
         for (; r <= flameLength; r++) {
             if (levelMap.getHashAt((int) y / 32, (int) x / 32 + r) == levelMap.getHash("brick")) {
@@ -75,9 +115,9 @@ public class Bomb extends Entity {
         }
         for (int i = 1; i < r; i++) {
             if (i != (r - 1)) {
-                flameList.add(new Flame(x + 32 * i, y, width, height, Flame.FlameDirection.RIGHT, false));
+                flameList.add(new Flame(x + 32 * i, y, Flame.FlameDirection.RIGHT, false));
             } else {
-                flameList.add(new Flame(x + 32 * i, y, width, height, Flame.FlameDirection.RIGHT, true));
+                flameList.add(new Flame(x + 32 * i, y, Flame.FlameDirection.RIGHT, true));
             }
         }
 
@@ -97,10 +137,10 @@ public class Bomb extends Entity {
             }
         }
         for (int i = 1; i < u; i++) {
-            if (i != (u- 1)) {
-                flameList.add(new Flame(x, y - 32 * i, width, height, Flame.FlameDirection.UP, false));
+            if (i != (u - 1)) {
+                flameList.add(new Flame(x, y - 32 * i, Flame.FlameDirection.UP, false));
             } else {
-                flameList.add(new Flame(x, y - 32 * i, width, height, Flame.FlameDirection.UP, true));
+                flameList.add(new Flame(x, y - 32 * i, Flame.FlameDirection.UP, true));
             }
         }
 
@@ -121,16 +161,45 @@ public class Bomb extends Entity {
         }
         for (int i = 1; i < d; i++) {
             if (i != (d - 1)) {
-                flameList.add(new Flame(x, y + 32 * i, width, height, Flame.FlameDirection.DOWN, false));
+                flameList.add(new Flame(x, y + 32 * i, Flame.FlameDirection.DOWN, false));
             } else {
-                flameList.add(new Flame(x, y + 32 * i, width, height, Flame.FlameDirection.DOWN, true));
+                flameList.add(new Flame(x, y + 32 * i, Flame.FlameDirection.DOWN, true));
             }
         }
     }
 
-    
-    public void explode() {
-        
+    @Override
+    public void render(Graphics g) {
+        if (time < timeBeforeExplode) {
+            img.render(g, x, y);
+        } else if (time <= timeBeforeExplode + flameTime) {
+            System.out.println("2");
+            flameList.forEach(flame -> flame.render(g));
+            img.setLoop(false);
+        } else {
+            
+            done = true;
+        }
+    }
+
+    @Override
+    public void update() {
+        time += Timers.getInstance().getDeltaTime();
+        if (!isAddFlame && time >= timeBeforeExplode  && time <= timeBeforeExplode + flameTime) {
+            explosion();System.out.println(1);
+            isAddFlame = true;
+        }
+      
+        img.update();
+        if(done)LevelMap.getInstance().setHashAt(y/32,x/32,"grass");
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public boolean isDone() {
+        return done;
     }
 
 }
