@@ -1,5 +1,7 @@
 package Item;
 
+import java.awt.image.BufferedImage;
+
 import Boomber.Bomber;
 import Enitity.EntityManager;
 import Enitity.Item;
@@ -22,6 +24,10 @@ public class SpeedItem extends Item {
 			bomber.setSpeed(16.0/(8-numberEaten));
 		}
 		done = true;
+	}
+	@Override
+	public BufferedImage getImage() {
+		return sprite.getSprite(1,0);
 	}
 	
 	

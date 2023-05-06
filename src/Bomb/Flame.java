@@ -11,6 +11,7 @@ import Graphics.SpriteSheet;
 
 
 public class Flame extends Entity {
+	public static final int MAX_LENGTH = 6;
 
     public Image img  = null;
     public static final int dispTime = 30_000;
@@ -74,6 +75,7 @@ public class Flame extends Entity {
     public void update() {
         
     }
+    
     
    
  

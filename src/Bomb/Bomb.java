@@ -202,4 +202,12 @@ public class Bomb extends Entity {
         return done;
     }
 
+	public static int getFlameLength() {
+		return flameLength;
+	}
+
+	public static void setFlameLength(int flameLength) {
+		Bomb.flameLength = flameLength;
+	}
+
 }

@@ -18,6 +18,7 @@ public abstract class Item extends Entity {
 	}
 	
 	public abstract void changePower();
+	public abstract BufferedImage getImage();
 	@Override 
 	public void render(Graphics g) {
 		g.drawImage(Item,x*32,y*32,null);
