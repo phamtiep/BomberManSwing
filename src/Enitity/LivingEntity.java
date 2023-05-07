@@ -46,7 +46,7 @@ public abstract class LivingEntity extends Entity {
 	}
 
 	public void setDestroyed(boolean destroyed) {
-		this.alive = destroyed;
+		this.destroyed = destroyed;
 	} 
 	
 	public Direction getCurrenDirection() {

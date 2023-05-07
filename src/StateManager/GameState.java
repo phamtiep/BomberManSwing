@@ -26,9 +26,15 @@ public class GameState extends JPanel {
 
     LevelMap map = LevelMap.getInstance();
     public static List<Integer> es = new ArrayList<Integer>();
+<<<<<<< HEAD
     private  JLabel scoreLabel;
     private  JLabel livesLabel;
 
+=======
+    public enum class  State {
+        
+    }
+>>>>>>> faea5ebc959d8ebc9739d530b739a11cf9a63a5d
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         LevelMap.getInstance().render(g);
@@ -82,6 +88,7 @@ public class GameState extends JPanel {
 
 	public void handleInput() {
         EntityManager entityManager = EntityManager.getInstance();
+        if(entityManager.bomber.getPlayerAction() == Action.DEAD) return;
         if (!es.isEmpty()) {
            
             if (es.contains(KeyEvent.VK_SPACE)) {

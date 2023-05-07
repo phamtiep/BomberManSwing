@@ -114,7 +114,7 @@ public class Animation {
                 } else {
                     done = true;
                     // stop at last animation then say that the animation is done
-                    calcTime = totalTime - timePerFrame;
+                    calcTime = 0;
                 }
             }
             int index = 1;

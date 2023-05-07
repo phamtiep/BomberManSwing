@@ -18,7 +18,7 @@ public class Otopus extends Enemy {
         super(x, y);
         animationLeft = new Animation("/anhgame.png", 4, 0, 700_000_000, 0);
         animationRight = new Animation("/anhgame.png", 4, 1, 700_000_000, 0); 
-        animationDeath = new Animation("/NewDeadAnimation.png",4, 2, 600_000_000, 0); 
+        animationDeath = new Animation("/enemiesDead.png",6, 3, 2000_000_000, 0); 
         initDirectionList();
         animationLeft.setLoop(true);
         animationRight.setLoop(true); 

@@ -11,7 +11,7 @@ public class Flame extends Entity {
     public static final int MAX_LENGTH = 6;
 
     public Image img = null;
-    public static final int dispTime = 30_000;
+    public static final int dispTime = 30_000_0000;
     private boolean isDone = false;
     /**
      * @return the isDone
@@ -79,9 +79,9 @@ public class Flame extends Entity {
     @Override
     public void render(Graphics g) {
         // TODO Auto-generated method stub
-
+        if(!isDone) {
         g.drawImage(img, x, y, null);
-
+        }
     }
 
     @Override

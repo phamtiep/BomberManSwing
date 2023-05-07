@@ -20,6 +20,15 @@
 # #*# #*#*# # #*#*#*#	
 #   * *   *  *  2*  #
 #####################
+b 2
+3 10
+17 2
+f 2
+10 13
+18 15
+s 2
+4 19
+14 13
 
 2/ R dòng tiếp theo, mỗi dòng có C kí tự. Mỗi kí tự đại diện cho một đối tượng trên bản đồ:
 Tiles:
@@ -31,4 +40,9 @@ p - Bomber
 1 - Ghost
 2 - Octopus
 3 - BossCrap
+
+Item:
+b - Bomb Item
+f - Flame Item
+s - Speed Item
 

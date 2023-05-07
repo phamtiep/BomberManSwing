@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.*;
 
+
 import Bomb.Bomb;
 import Config.Action;
 import Config.Direction;
@@ -16,6 +17,7 @@ import Graphics.Animation;
 import Graphics.Sprite;
 import Graphics.SpriteSheet;
 import Map.LevelMap;
+import Time.Timers;
 
 public class Bomber extends LivingEntity {
 
@@ -24,7 +26,9 @@ public class Bomber extends LivingEntity {
     public static final int DEFAULT_LIVES = 5;
     public static Image currentSprite;
     private final List<Item> eatenItems = new ArrayList<>();
-
+    public int undeadModeTime = 2_000_000_000;
+    public boolean isUndead = true;
+    public int time = 0;
     public static Animation animationLeft;
     public static Animation animationRight;
     public static Animation animationDown;
@@ -45,7 +49,13 @@ public class Bomber extends LivingEntity {
     public void setInitialX(int initialX) {
         this.initialX = initialX;
     }
-
+    public void updateUndead() {
+        time += Timers.getInstance().getDeltaTime();
+        if(time > undeadModeTime) {
+            isUndead = false;
+            time = 0;
+        }
+    }
     /**
      * @return the initialY
      */
@@ -75,7 +85,7 @@ public class Bomber extends LivingEntity {
     public static Animation theLastAnimation;
     Action playerAction;
     static String pathMove = "/final.png";
-    public static String pathDie = "newDeadAnimation.png";
+    public static String pathDie = "/newdead.png";
     // protected Action playerAction = Action.IDLE;
 
     protected final BoxCollider bomberBox;
@@ -113,8 +123,8 @@ public class Bomber extends LivingEntity {
             animationUp.setLoop(true);
             animationDown = new Animation(pathMove, 3, 1, 750_000_000, 0, 26, 35);
             animationDown.setLoop(true);
-           //animationDie = new Animation(pathDie, , ,750_000_000,0,26,35);
-           //animationDie.setLoop(true);
+            animationDie = new Animation(pathDie,6,0 ,2000_000_000,0,26,35);
+            animationDie.setLoop(false);
             theLastAnimation = animationDown;
         } catch (Exception e) {
             System.out.println(animationLeft == null);
@@ -149,10 +159,12 @@ public class Bomber extends LivingEntity {
             default:
                 break;
             }
-        } else if (playerAction == Action.IDLE){
+        } 
+        else if (playerAction == Action.IDLE){
             theLastAnimation.render(g, x, y);
         }
         else if (playerAction == Action.DEAD) {
+            System.out.println("0");
             animationDie.render(g,x,y);
             animationDie.update();
         }
@@ -165,11 +177,16 @@ public class Bomber extends LivingEntity {
         if(playerAction == Action.DEAD) {
             if(animationDie.isDone())
             {
-                animationDie.setDone(false);
                 playerAction = Action.IDLE;
+                this.isUndead = true;
+                animationDie.setDone(false);
+                
                 this.setX(initialX);
                 this.setY(initialY);
             }
+        }
+        if(isUndead) {
+            updateUndead();
         }
 
     }
