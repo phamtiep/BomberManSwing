@@ -22,7 +22,7 @@ public class Main extends JFrame implements  Runnable {
         }
         return instance;
     }
-    private Main() { 
+    private Main() {
     }
 
     public void startGame() {
