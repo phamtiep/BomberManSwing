@@ -11,7 +11,7 @@ public class Ghost extends Enemy {
 		super(x, y);
 		animationLeft = new Animation("/Anhgame.png", 4, 0, 750_000_000 , 4); 
 		animationRight = new Animation("/Anhgame.png", 4, 1, 750_000_000 , 4); 
-		animationDeath = new Animation("/NewDeadAnimation.png", 3, 0, 750_000_000, 0); 
+		animationDeath = new Animation("/enemiesDead.png",6, 0, 2000_000_000, 0); 
 		initDirectionList(); 
 		animationLeft.setLoop(true);
 		animationRight.setLoop(true); 

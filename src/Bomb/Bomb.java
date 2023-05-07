@@ -194,7 +194,7 @@ public class Bomb extends Entity {
     public void render(Graphics g) {
         if (time < timeBeforeExplode) {
             img.render(g, x, y);
-        } else if (time <= (float)timeBeforeExplode + (float)flameTime) {
+        } else if (time <= (float)timeBeforeExplode + (float)flameTime*2) {
             flameList.forEach(flame -> flame.render(g));
             flameList.forEach(flame -> flame.update());
             img.setLoop(false);
