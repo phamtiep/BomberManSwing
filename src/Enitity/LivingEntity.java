@@ -47,6 +47,8 @@ public abstract class LivingEntity extends Entity {
 	
 	public void setCurrenDirection(Direction other) {
 		this.currentDirection = other; 
+		
+		
 	}
 	
 	

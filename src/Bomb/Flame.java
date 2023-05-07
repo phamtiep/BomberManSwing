@@ -33,27 +33,25 @@ public class Flame extends Entity {
             }
             break;
         case CENTER:
-            if(isLast)img = inp.getSprite(1, 5);
-            else {
-                img = inp.getSprite(1, 6);
+        { img = inp.getSprite(0, 4);
             }
             break;
         case LEFT:
-            if(isLast)img = inp.getSprite(1, 5);
+            if(isLast)img = inp.getSprite(3, 4);
             else {
-                img = inp.getSprite(1, 6);
+                img = inp.getSprite(4, 4);
             }
             break;
         case DOWN:
-            if(isLast)img = inp.getSprite(1, 5);
+            if(isLast)img = inp.getSprite(0, 6);
             else {
-                img = inp.getSprite(1, 6);
+                img = inp.getSprite(0, 5);
             }
             break;
         case RIGHT:
-            if(isLast)img = inp.getSprite(1, 5);
+            if(isLast)img = inp.getSprite(2, 4);
             else {
-                img = inp.getSprite(1, 6);
+                img = inp.getSprite(1, 4);
             }
             break;
         default:

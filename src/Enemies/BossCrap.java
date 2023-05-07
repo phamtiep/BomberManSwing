@@ -31,7 +31,6 @@ public class BossCrap extends Enemy {
 	                && Math.abs((double) i * GameConfig.SIZE_BLOCK - y) < speed) {
 	            moveX = 0;
 	            moveY = 0;
-	            
 	            currentDirection = findWay(i, j); 
 	            canMoveR = checkHashMap(i, j + 1);
 	            canMoveL = checkHashMap(i, j - 1);

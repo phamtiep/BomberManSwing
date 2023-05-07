@@ -41,11 +41,12 @@ public class Bomber extends LivingEntity {
     private boolean invincible = false;
     private int frameCounter;
     private boolean canResetLocation = false;
-    private int bombMax = 100;
+    private int bombMax = 2;
     int leftCol ;
     int rightCol ;
     int topRow ;
     int bottomRow;
+    public static  Animation theLastAnimation ;
     Action playerAction;
     static String  path = "/final.png";
 
@@ -89,6 +90,7 @@ public class Bomber extends LivingEntity {
             animationUp.setLoop(true);
             animationDown = new Animation(path,3, 1, 750_000_000, 0,26,35);
             animationDown.setLoop(true);
+            theLastAnimation = animationDown;
         }
         catch(Exception e) {
             System.out.println(animationLeft == null );
@@ -98,25 +100,33 @@ public class Bomber extends LivingEntity {
 
     @Override
     public void render(Graphics g) {
+        if(playerAction == Action.MOVING) {
         switch (currentDirection) {
         case UP:
+            theLastAnimation = animationUp;
             animationUp.render(g,x, y);
             animationUp.update();
             break;
         case DOWN:
+            theLastAnimation = animationDown;
             animationDown.render(g,x, y);
             animationDown.update();
             break;
         case LEFT:
+            theLastAnimation = animationLeft;
             animationLeft.render(g,x, y);
             animationLeft.update();
             break;
         case RIGHT:
+            theLastAnimation = animationRight;
             animationRight.render(g,x, y);
             animationRight.update();
             break;
         default:
             break;
+        }}
+        else {
+            theLastAnimation.render(g,x,y);
         }
     }
 

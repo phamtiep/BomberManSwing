@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import Boomber.Bomber;
 import Config.GameConfig;
 import Enitity.Entity;
 import Enitity.EntityManager;
@@ -16,12 +17,26 @@ public class Bomb extends Entity {
     public static boolean initialized = false;
     public static final int DEFAULT_FLAME_LENGTH = 1;
     public Animation img = new Animation("/anhgame.png", 3, 2, 1000_000_000, 0,2);
-
+    
     private final List<Flame> flameList = new ArrayList<>();
 
-    
+    public boolean canPass = true;
     private static int flameLength = DEFAULT_FLAME_LENGTH;
-    private double timeBeforeExplode = 2000_000_000;
+    /**
+     * @return the flameLength
+     */
+    public static int getFlameLength() {
+        return flameLength;
+    }
+
+    /**
+     * @param flameLength the flameLength to set
+     */
+    public static void setFlameLength(int flameLength) {
+        Bomb.flameLength = flameLength;
+    }
+
+    private float timeBeforeExplode = 3000_000_000.f;
     private int flameTime = 500_000_000;
     private double time = 0;
     /**
@@ -45,7 +60,7 @@ public class Bomb extends Entity {
         this.x *= GameConfig.SIZE_BLOCK;
         this.y *= GameConfig.SIZE_BLOCK;
         
-        LevelMap.getInstance().setHashAt(this.y/32, this.x/32, "bomb");
+        
         img.setLoop(true);
     }
 
@@ -172,8 +187,7 @@ public class Bomb extends Entity {
     public void render(Graphics g) {
         if (time < timeBeforeExplode) {
             img.render(g, x, y);
-        } else if (time <= timeBeforeExplode + flameTime) {
-            System.out.println("2");
+        } else if (time <= (float)timeBeforeExplode + (float)flameTime) {
             flameList.forEach(flame -> flame.render(g));
             img.setLoop(false);
         } else {
@@ -185,13 +199,16 @@ public class Bomb extends Entity {
     @Override
     public void update() {
         time += Timers.getInstance().getDeltaTime();
-        if (!isAddFlame && time >= timeBeforeExplode  && time <= timeBeforeExplode + flameTime) {
-            explosion();System.out.println(1);
+        EntityManager entityManager = EntityManager.getInstance();
+        if (!isAddFlame && (float)time >= (float)timeBeforeExplode  && (float)time <=(float) timeBeforeExplode + (float)flameTime) {
+            explosion();
             isAddFlame = true;
         }
+        if( Math.abs(entityManager.bomber.getX() - this.x) > 32 || Math.abs(entityManager.bomber.getY()-this.y) > 32)
+            canPass = false;
       
         img.update();
-        if(done)LevelMap.getInstance().setHashAt(y/32,x/32,"grass");
+       //if(done)LevelMap.getInstance().setHashAt(y/32,x/32,"grass");
     }
 
     public void setDone(boolean done) {
@@ -202,12 +219,6 @@ public class Bomb extends Entity {
         return done;
     }
 
-	public static int getFlameLength() {
-		return flameLength;
-	}
 
-	public static void setFlameLength(int flameLength) {
-		Bomb.flameLength = flameLength;
-	}
 
 }

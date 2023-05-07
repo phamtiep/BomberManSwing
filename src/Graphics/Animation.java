@@ -20,7 +20,20 @@ public class Animation {
     private int totalTime;
 
     private int timePerFrame;
-    
+    private  Image currentAnimation = null;
+    /**
+     * @return the currentAnimation
+     */
+    public Image getCurrentAnimation() {
+        return currentAnimation;
+    }
+    /**
+     * @param currentAnimation the currentAnimation to set
+     */
+    public void setCurrentAnimation(Image currentAnimation) {
+        this.currentAnimation = currentAnimation;
+    }
+
     private boolean done = false;
     private boolean loop;
     private int speedIncrementAnimationSpeed = 1;
@@ -86,8 +99,8 @@ public class Animation {
      */
     public void render(Graphics g, int dX, int dY) {
         if (!done) {
-        	
-            g.drawImage(sprite.getSprite(row + i, cols), dX, dY, null); 
+        	  currentAnimation = sprite.getSprite(row + i, cols);
+            g.drawImage(currentAnimation, dX, dY, null); 
         }
     }
 
