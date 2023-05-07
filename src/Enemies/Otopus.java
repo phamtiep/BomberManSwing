@@ -42,13 +42,8 @@ public class Otopus extends Enemy {
             canMoveL = checkHashMap(i, j - 1);
             canMoveU = checkHashMap(i - 1, j);
             canMoveD = checkHashMap(i + 1, j);
-
+           
             checkMove();
-            // initDirectionList();
-            if (moveY == 0 && moveX == 0 && directionList.size() != 0) {
-                int ran = random.nextInt(directionList.size());
-                currentDirection = directionList.get(ran);
-            }
         }
         x += moveX;
         y += moveY;
@@ -77,10 +72,10 @@ public class Otopus extends Enemy {
         int jBomber = (int) (bomberX + GameConfig.SIZE_BLOCK / 2) / GameConfig.SIZE_BLOCK;
         int iBomber = (int) (bomberY + GameConfig.SIZE_BLOCK/ 2) / GameConfig.SIZE_BLOCK;
         
-        canMoveR = checkMapHash(i, j + 1);
-        canMoveL = checkMapHash(i, j - 1);
-        canMoveU = checkMapHash(i - 1, j);
-        canMoveD = checkMapHash(i + 1, j);
+        canMoveR = checkHashMap(i, j + 1);
+        canMoveL = checkHashMap(i, j - 1);
+        canMoveU = checkHashMap(i - 1, j);
+        canMoveD = checkHashMap(i + 1, j);
 
         Queue<Direction> direc = new LinkedList<>();
         Queue<Integer> iTile = new LinkedList<>();
@@ -124,10 +119,10 @@ public class Otopus extends Enemy {
                 }
             }
 
-            canMoveR = checkMapHash(i, j + 1);
-            canMoveL = checkMapHash(i, j - 1);
-            canMoveU = checkMapHash(i - 1, j);
-            canMoveD = checkMapHash(i + 1, j);
+            canMoveR = checkHashMap(i, j + 1);
+            canMoveL = checkHashMap(i, j - 1);
+            canMoveU = checkHashMap(i - 1, j);
+            canMoveD = checkHashMap(i + 1, j);
 
             if (canMoveR && !checkPass[i][j + 1]) {
                 checkPass[i][j + 1] = true;
@@ -154,10 +149,13 @@ public class Otopus extends Enemy {
                 jTile.add(j);
             }
         }
-
+        
+        
         int ran = random.nextInt(directionList.size());
         return directionList.get(ran);
         
     }
+        
+       
     
 }
