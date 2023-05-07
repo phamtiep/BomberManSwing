@@ -18,9 +18,23 @@ import Map.LevelMap;
 public abstract class Enemy extends LivingEntity {
 
     protected Animation animationLeft;
-    protected Animation animationRight; 
-    protected Animation animationDeath; 
-    protected boolean done = false;
+    protected Animation animationRight;
+    protected Animation animationDeath;
+    protected boolean isDone = false;
+    /**
+     * @return the isDone
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
+     * @param isDone the isDone to set
+     */
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
     protected double moveX = 0;
     protected double moveY = 0;
     protected boolean canMoveR = false;
@@ -28,7 +42,7 @@ public abstract class Enemy extends LivingEntity {
     protected boolean canMoveU = false;
     protected boolean canMoveD = false;
     protected Random random = new Random();
-    protected boolean randomAnimation = true; 
+    protected boolean randomAnimation = true;
 
     protected List<Direction> directionList = new ArrayList<>();
     protected Sprite sheet;
@@ -40,21 +54,28 @@ public abstract class Enemy extends LivingEntity {
     }
 
     public void render(Graphics g) {
-        if (!deytroyed) {
-            if(randomAnimation) {
-            	animationRight.render(g, x, y);
-            	animationRight.update();
-            }else {
-            	animationLeft.render(g, x, y);
-            	animationLeft.update();
+        if (!destroyed) {
+            if (randomAnimation) {
+                animationRight.render(g, x, y);
+                animationRight.update();
+            } else {
+                animationLeft.render(g, x, y);
+                animationLeft.update();
             }
+        } else {
+            animationDeath.render(g, x, y);
+            animationDeath.update();
         }
 
     }
 
     public void update() {
-        if (alive) {
+        if (!destroyed) {
             move();
+        } else {
+            if (animationDeath.isDone()) {
+                isDone = true;
+            }
         }
     }
 
@@ -67,13 +88,14 @@ public abstract class Enemy extends LivingEntity {
 
         return map.getHashAt(i, j) == map.getHash("grass");
     }
-    
+
     protected void initDirectionList() {
         this.directionList.clear();
         directionList.add(Direction.UP);
         directionList.add(Direction.DOWN);
         directionList.add(Direction.LEFT);
         directionList.add(Direction.RIGHT);
+
 
     }
 
@@ -104,7 +126,7 @@ public abstract class Enemy extends LivingEntity {
         case LEFT: {
             if (canMoveL) {
                 moveX = -speed;
-                randomAnimation = false; 
+                randomAnimation = false;
                 initDirectionList();
             } else {
                 directionList.remove(Direction.LEFT);
@@ -114,7 +136,7 @@ public abstract class Enemy extends LivingEntity {
         case RIGHT: {
             if (canMoveR) {
                 moveX = speed;
-                randomAnimation = true; 
+                randomAnimation = true;
                 initDirectionList();
             } else {
                 directionList.remove(Direction.RIGHT);

@@ -15,7 +15,7 @@ public class Ghost extends Enemy {
 		initDirectionList(); 
 		animationLeft.setLoop(true);
 		animationRight.setLoop(true); 
-		animationDeath.setLoop(true);
+		animationDeath.setLoop(false);
 		score = 200; 
 	}
 

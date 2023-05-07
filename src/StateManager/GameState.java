@@ -60,40 +60,7 @@ public class GameState extends JPanel {
                 if (!es.contains(e.getKeyCode())) {
                     es.add(e.getKeyCode());
                 }
-//                entityManager.bomber.setPlayerAction(Action.MOVING);
-//            
-//                switch (e.getKeyCode()) {
-//                case (KeyEvent.VK_W): {
-//                    
-//                    entityManager.bomber.setCurrenDirection(Direction.UP);
-//
-//                }
-//                    break;
-//                case (KeyEvent.VK_S):
-//                    entityManager.bomber.setCurrenDirection(Direction.DOWN);
-//                    break;
-//                case (KeyEvent.VK_A):
-//                    entityManager.bomber.setCurrenDirection(Direction.LEFT);
-//                    break;
-//                case (KeyEvent.VK_D):
-//                    entityManager.bomber.setCurrenDirection(Direction.RIGHT);
-//                    break;
-//                case (KeyEvent.VK_SPACE): {
-//                    if (entityManager.bombs.size() < entityManager.bomber.getBombMax()) {
-//                        entityManager.bombs.add(
-//                                new Bomb(entityManager.bomber.getX(), entityManager.bomber.getY()));
-//                        LevelMap.getInstance().setHashAt(
-//                                (entityManager.bombs.get(entityManager.bombs.size() - 1).getY()
-//                                        / 32),
-//                                (entityManager.bombs.get(entityManager.bombs.size() - 1).getX()
-//                                        / 32),
-//                                "bomb");
-//                    }
-//                }
-//                
-//                    break;
-//                }
-
+//               
             }
         };
         this.addKeyListener(inp);
@@ -104,24 +71,20 @@ public class GameState extends JPanel {
     public void handleInput() {
         EntityManager entityManager = EntityManager.getInstance();
         if (!es.isEmpty()) {
-            entityManager.bomber.setPlayerAction(Action.MOVING);
+           
             if (es.contains(KeyEvent.VK_SPACE)) {
-                if (entityManager.bombs.size() < entityManager.bomber.getBombMax()) {
-                    entityManager.bombs.add(
-                            new Bomb(entityManager.bomber.getX(), entityManager.bomber.getY()));
-                    LevelMap.getInstance().setHashAt(
-                            (entityManager.bombs.get(entityManager.bombs.size() - 1).getY() / 32),
-                            (entityManager.bombs.get(entityManager.bombs.size() - 1).getX() / 32),
-                            "bomb");
-                    System.out.println(entityManager.bombs.size());
-                }
+                entityManager.bomber.placeBomb();
             } else if (es.contains(KeyEvent.VK_W) || es.contains(KeyEvent.VK_UP)) {
+                entityManager.bomber.setPlayerAction(Action.MOVING);
                 entityManager.bomber.setCurrenDirection(Direction.UP);
             } else if (es.contains(KeyEvent.VK_A) || es.contains(KeyEvent.VK_LEFT)) {
+                entityManager.bomber.setPlayerAction(Action.MOVING);
                 entityManager.bomber.setCurrenDirection(Direction.LEFT);
             } else if (es.contains(KeyEvent.VK_D) || es.contains(KeyEvent.VK_RIGHT)) {
+                entityManager.bomber.setPlayerAction(Action.MOVING);
                 entityManager.bomber.setCurrenDirection(Direction.RIGHT);
             } else if (es.contains(KeyEvent.VK_S) || es.contains(KeyEvent.VK_DOWN)) {
+                entityManager.bomber.setPlayerAction(Action.MOVING);
                 entityManager.bomber.setCurrenDirection(Direction.DOWN);
             }
 

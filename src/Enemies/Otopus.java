@@ -22,7 +22,7 @@ public class Otopus extends Enemy {
         initDirectionList();
         animationLeft.setLoop(true);
         animationRight.setLoop(true); 
-        animationDeath.setLoop(true); 
+        animationDeath.setLoop(false); 
         currentDirection = Direction.values()[random.nextInt(Direction.values().length)];
         score = 100;
 

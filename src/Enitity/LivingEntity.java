@@ -6,8 +6,16 @@ public abstract class LivingEntity extends Entity {
 	
 	protected double speed;  
 	protected int live; 
-	protected boolean deytroyed = false;
-	protected boolean moving = false;
+	protected boolean destroyed = false;
+
+    /**
+     * @return the destroyed
+     */
+    public boolean isDestroyed() {
+        return destroyed;
+    }
+
+    protected boolean moving = false;
 	protected Direction currentDirection; 
 	
 	public LivingEntity(int x , int y) {

@@ -20,6 +20,13 @@ public class Bomb extends Entity {
     
     private final List<Flame> flameList = new ArrayList<>();
 
+    /**
+     * @return the flameList
+     */
+    public List<Flame> getFlameList() {
+        return flameList;
+    }
+
     public boolean canPass = true;
     private static int flameLength = DEFAULT_FLAME_LENGTH;
     /**
@@ -53,8 +60,8 @@ public class Bomb extends Entity {
         this.x = ((x +26)/ GameConfig.SIZE_BLOCK) ;
         this.y = ((y + 35)/ GameConfig.SIZE_BLOCK )  ;
 //        if((x+26)%GameConfig.SIZE_BLOCK == 0)x--;
-        if((y+35)%GameConfig.SIZE_BLOCK == 0)this.y--;
-      if((x+26)%GameConfig.SIZE_BLOCK==0)this.x--;
+//        if((y+35)%GameConfig.SIZE_BLOCK == 0)this.y--;
+//      if((x+26)%GameConfig.SIZE_BLOCK==0)this.x--;
 //        System.out.println((x+26)%GameConfig.SIZE_BLOCK);
 //        System.out.println((y+26)%GameConfig.SIZE_BLOCK);
         this.x *= GameConfig.SIZE_BLOCK;
@@ -189,6 +196,7 @@ public class Bomb extends Entity {
             img.render(g, x, y);
         } else if (time <= (float)timeBeforeExplode + (float)flameTime) {
             flameList.forEach(flame -> flame.render(g));
+            flameList.forEach(flame -> flame.update());
             img.setLoop(false);
         } else {
             
