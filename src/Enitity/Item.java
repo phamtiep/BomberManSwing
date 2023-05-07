@@ -21,7 +21,10 @@ public abstract class Item extends Entity {
 	public abstract BufferedImage getImage();
 	@Override 
 	public void render(Graphics g) {
-		g.drawImage(Item,x*32,y*32,null);
+		if(appear) {
+			g.drawImage(Item,x*32,y*32,null);
+		}
+		
 	}
 	
 	@Override
