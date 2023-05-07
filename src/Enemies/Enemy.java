@@ -67,12 +67,7 @@ public abstract class Enemy extends LivingEntity {
 
         return map.getHashAt(i, j) == map.getHash("grass");
     }
-
-    public boolean checkMapHash(int i, int j) {
-        return canMoveD;
-
-    }
-
+    
     protected void initDirectionList() {
         this.directionList.clear();
         directionList.add(Direction.UP);
