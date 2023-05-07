@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Bomb.Bomb;
@@ -21,11 +22,12 @@ import Enitity.Item;
 import Item.SpeedItem;
 import Main.*;
 import Map.LevelMap;
-
 public class GameState extends JPanel {
 
     LevelMap map = LevelMap.getInstance();
     public static List<Integer> es = new ArrayList<Integer>();
+    private  JLabel scoreLabel;
+    private  JLabel livesLabel;
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -63,12 +65,22 @@ public class GameState extends JPanel {
 //               
             }
         };
+        
+        addLabel(); 
+        
         this.addKeyListener(inp);
         this.setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
 
     }
 
-    public void handleInput() {
+    private void addLabel() {
+    	scoreLabel = new JLabel("SCORE: " +  10);
+    	livesLabel = new JLabel("lives : " + 0); 
+        this.add(scoreLabel); 
+        this.add(livesLabel); 
+	}
+
+	public void handleInput() {
         EntityManager entityManager = EntityManager.getInstance();
         if (!es.isEmpty()) {
            

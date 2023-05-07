@@ -43,6 +43,9 @@ public class Otopus extends Enemy {
             canMoveU = checkHashMap(i - 1, j);
             canMoveD = checkHashMap(i + 1, j);
            
+            if(!canMoveD && !canMoveL && !canMoveR && !canMoveU) {
+            	return; 
+            }
             checkMove();
         }
         x += moveX;
@@ -126,25 +129,25 @@ public class Otopus extends Enemy {
 
             if (canMoveR && !checkPass[i][j + 1]) {
                 checkPass[i][j + 1] = true;
-                direc.add(Direction.RIGHT);
+                direc.add(direction);
                 iTile.add(i);
                 jTile.add(j + 1);
             }
             if (canMoveL && !checkPass[i][j - 1]) {
                 checkPass[i][j - 1] = true;
-                direc.add(Direction.LEFT);
+                direc.add(direction);
                 iTile.add(i);
                 jTile.add(j - 1);
             }
             if (canMoveU && !checkPass[i - 1][j]) {
                 checkPass[i - 1][j] = true;
-                direc.add(Direction.UP);
+                direc.add(direction);
                 iTile.add(i - 1);
                 jTile.add(j);
             }
             if (canMoveD && !checkPass[i + 1][j]) {
                 checkPass[i + 1][j] = true;
-                direc.add(Direction.DOWN);
+                direc.add(direction);
                 iTile.add(i + 1);
                 jTile.add(j);
             }
@@ -155,7 +158,7 @@ public class Otopus extends Enemy {
         return directionList.get(ran);
         
     }
-        
+    
        
     
 }
