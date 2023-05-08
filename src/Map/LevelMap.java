@@ -16,6 +16,9 @@ import Enitity.Brick;
 import Enitity.EntityManager;
 import Enitity.Grass;
 import Enitity.Wall;
+import Item.BombItem;
+import Item.FlameItem;
+import Item.SpeedItem;
 
 public class LevelMap {
     private char[][] mapHash = new char[21][21];
@@ -102,6 +105,16 @@ public class LevelMap {
         case "bomb" :
              output = 'b';
               break;
+        case "Bomb Item" : 
+        	 output = 'i'; 
+        	 break; 
+        case "Flame Item" : 
+       	 output = 'f'; 
+       	 break; 
+        case "Speed Item" : 
+       	 output = 's'; 
+       	 break; 
+              
         default:
             break;
         }
@@ -167,6 +180,26 @@ public class LevelMap {
                        EntityManager.getInstance().bomber = new Bomber(j*32, i*32);
                         break;
                     }
+                    case 'i' :{
+                    	brickList.add(new Brick(j*32, i*32));
+                    	EntityManager.getInstance().item.add(new BombItem(j*32, i*32));
+                    	hash = getHash("brick"); 
+                        break;
+                    }
+                    case 'f' :{
+                    	EntityManager.getInstance().item.add(new FlameItem(j*32, i*32));
+                    	brickList.add(new Brick(j*32, i*32));
+                        hash = getHash("brick");         
+                        break;
+                    }
+                    case 's' :{
+                    	EntityManager.getInstance().item.add(new SpeedItem(j*32, i*32));
+                    	brickList.add(new Brick(j*32, i*32));
+                        hash = getHash("brick");
+                        break;
+                    }
+                    
+                    
                     default:
                         break;
                     }

@@ -16,6 +16,7 @@ import Enitity.LivingEntity;
 import Graphics.Animation;
 import Graphics.Sprite;
 import Graphics.SpriteSheet;
+import Item.BombItem;
 import Map.LevelMap;
 import Time.Timers;
 
@@ -362,7 +363,8 @@ public class Bomber extends LivingEntity {
 
         return levelMap.getHashAt(i, j) == levelMap.getHash("wall");
     }
-
+   
+    
     public void reset() {
         eatenItems.clear();
         canPassBrick = false;

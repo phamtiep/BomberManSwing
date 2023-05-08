@@ -61,7 +61,7 @@ public class Otopus extends Enemy {
 
         for (int m = 0; m < checkPass.length; m++) {
             for (int n = 0; n < checkPass[0].length; n++) {
-               if(levelMap.getHashAt(m, n) == levelMap.getHash("wall") || levelMap.getHashAt(m, n) == levelMap.getHash("brick")) {
+               if(levelMap.getHashAt(m, n) == levelMap.getHash("wall") || levelMap.getHashAt(m, n) == levelMap.getHash("brick") || levelMap.getHashAt(m, n) == levelMap.getHash("bomb")  ) {
             	   checkPass[m][n] = true; 
                }else {
             	   checkPass[m][n] = false; 

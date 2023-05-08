@@ -17,6 +17,8 @@ public class EntityManager {
     public List<Enemy> enemy = new ArrayList<>();
     public List<Bomb> bombs = new ArrayList<>();
     public List<Brick> brick = new ArrayList<>();
+    public List<Item> item = new ArrayList<>(); 
+    
     public Bomber bomber;
     public final int LIVE_DEFAULT = 3;
     public int lives = LIVE_DEFAULT;
@@ -55,6 +57,11 @@ public class EntityManager {
                 enemy.render(g);
             }
         });
+        item.forEach(item ->{
+        	if(!item.done) {
+        		item.render(g);
+        	}
+        });
         brick.forEach(brick -> brick.render(g));
         bombs.forEach(bomb -> bomb.render(g));
         bomber.render(g);
@@ -63,7 +70,12 @@ public class EntityManager {
     public void update() {
         System.out.println(lives);
         enemy.forEach(enemy -> enemy.update());
-
+        item.forEach(item ->{
+        	if(!item.done) {
+        		item.update();
+        	}
+        });
+        
         for (int i = 0; i < bombs.size(); i++) {
             if (!bombs.get(i).isDone()) {
                 bombs.get(i).update();
@@ -83,7 +95,7 @@ public class EntityManager {
                         bomber.setPlayerAction(Action.DEAD);
                         this.lives--;
                     }
-                    enemy.forEach(enemy -> {
+                        enemy.forEach(enemy -> {
                         if (!enemy.isDone()) {
                             BoxCollider enemyBox = new BoxCollider(enemy.getX(), enemy.getY(), 32,
                                     32);
@@ -116,6 +128,10 @@ public class EntityManager {
                 }
             }
         }
+    }
+    
+    public void checkEaten() {
+    	
     }
 
 }

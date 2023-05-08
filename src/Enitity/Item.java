@@ -1,7 +1,9 @@
 package Enitity;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import Graphics.Sprite;
+import Map.LevelMap;
 import Time.Timers;
 
 public abstract class Item extends Entity {
@@ -11,37 +13,36 @@ public abstract class Item extends Entity {
 	protected boolean eaten = false;
 	protected boolean done = false;
 	protected double time = 0;
-	protected BufferedImage Item ;
+	protected Image Item = null;
+	LevelMap level = LevelMap.getInstance(); 
 	public Item(int x, int y) {
 		super(x,y);
-		sprite = new Sprite("/ItemBomberMan.png",1);
+		sprite = new Sprite("/ItemBomberman.png",1);
 	}
 	
+	public abstract void checkEaten(); 
 	public abstract void changePower();
 	public abstract BufferedImage getImage();
 	@Override 
 	public void render(Graphics g) {
 		if(appear) {
-			g.drawImage(Item,x*32,y*32,null);
-		}
-		
+			g.drawImage(Item,x,y,null); 
+		}	
 	}
 	
 	@Override
 	public void update() {
-		if(appear) {
-			time += Timers.getInstance().getDeltaTime();
-			if(time>= timeAppear||eaten) {
-				appear = false;
-				time = 0;
-				if(time>= timeAppear) {
-					done = true;
-				}
-			}
+		if(level.getHashAt(x, y) != level.getHash("brick") && !done) {
+			appear = true; 
 		}
-		if(eaten&&!done) {
-			time+=Timers.getInstance().getDeltaTime();
+		if(appear) {
+			checkEaten();
+		}
+		
+		if(eaten) {
+			if(!done) {
 			changePower();
+			}
 		}
 	}
 
