@@ -16,12 +16,14 @@ public class BombItem  extends Item{
 	
 	@Override
 	public void changePower() {
-		System.out.println("da an item");
+	    done = true;
+	//	System.out.println("da an item");
 		Bomber bomber = EntityManager.getInstance().bomber;
+	
 		if(bomber.getBombMax()<10) {
 			bomber.setBombMax(bomber.getBombMax()+1);
 		}
-		done = true;
+		
 		appear = false; 
 	}
 	@Override

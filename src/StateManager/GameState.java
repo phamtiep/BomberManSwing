@@ -3,13 +3,19 @@ package StateManager;
 
 
 import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,6 +30,7 @@ import Enemies.Ghost;
 import Enemies.Otopus;
 import Enitity.EntityManager;
 import Enitity.Item;
+import Graphics.SpriteSheet;
 import Item.SpeedItem;
 import Main.*;
 import Map.LevelMap;
@@ -32,22 +39,40 @@ public class GameState extends JPanel {
     LevelMap map = LevelMap.getInstance();
     public static List<Integer> es = new ArrayList<Integer>();
 
-<<<<<<< HEAD
-=======
 
 
-    public Stage gameStage;
+
+
+
+    
+
+    SpriteSheet gameLose = new SpriteSheet("/GameOver.png");
+    SpriteSheet gameWin = new SpriteSheet("/game_completed.png");
+
+
+
+   
+    public static Stage gameStage;
+
     JLabel scoreLabel = new JLabel("Score : " + 0);
     JLabel lives = new JLabel("Lives : " + EntityManager.getInstance().lives);
     
     
 
->>>>>>> 4105c78bca27d749d8b970e17d400cca8641db30
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (gameStage == Stage.Playing) {
-            lives.setText("Lives :" + EntityManager.getInstance().lives);
+          //  lives.setLocation(200, 300);
+            this.setBackground(Color.black);
             
+            
+            
+          
+            g.setFont(new Font("Arial", Font.BOLD,20));
+            g.setColor(Color.CYAN);
+            g.drawString("Lives : " + EntityManager.getInstance().lives  ,GameConfig.WIDTH  + 5, 30);
+            g.drawString("Score : " + EntityManager.getInstance().score, GameConfig.WIDTH + 5, 60);
             LevelMap.getInstance().render(g);
             EntityManager.getInstance().render(g);
             EntityManager.getInstance().update();
@@ -55,11 +80,12 @@ public class GameState extends JPanel {
         }
         else if(gameStage == Stage.Lose) {
             handleInputMenu();
+            g.drawImage(gameLose.getImg(),0, 0,GameConfig.SCREEN_WIDTH,GameConfig.SCREEN_HEIGHT, null);
         }
         
         else if (gameStage == Stage.Win) {
             handleInputMenu();
-            
+            g.drawImage(gameWin.getImg(),0, 0,GameConfig.SCREEN_WIDTH,GameConfig.SCREEN_HEIGHT, null);
         }
         
         
@@ -71,10 +97,7 @@ public class GameState extends JPanel {
 
     public GameState() {
         gameStage = Stage.Playing;
-        //lives.setBounds(0, 0, lives.getWidth(), lives.getHeight());
-        this.add(lives);
-        
-        this.add(scoreLabel);
+
         KeyListener inp = new KeyListener() {
 
             @Override
@@ -102,21 +125,15 @@ public class GameState extends JPanel {
 //               
             }
         };
-        
-<<<<<<< HEAD
-=======
-      //  addLabel(); 
->>>>>>> 4105c78bca27d749d8b970e17d400cca8641db30
-        
+
+
         this.addKeyListener(inp);
         this.setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
 
     }
 
-<<<<<<< HEAD
-=======
-   
->>>>>>> 4105c78bca27d749d8b970e17d400cca8641db30
+
+
 	public void handleInput() {
         EntityManager entityManager = EntityManager.getInstance();
         if (entityManager.bomber.getPlayerAction() == Action.DEAD)
@@ -149,6 +166,11 @@ public class GameState extends JPanel {
             StateManager.getInstance().setCurrentState(StateManager.State.MENU);
             es.clear();
         }
+    }
+    public void add() {
+        this.setLayout(null);
+        this.add(lives);
+        lives.setLocation(100, 100);
     }
 
 }

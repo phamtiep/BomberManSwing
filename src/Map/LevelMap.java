@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import Boomber.Bomber;
 import Config.GameConfig;
-import Enemies.BossCrap;
+
 import Enemies.Enemy;
 import Enemies.Ghost;
 import Enemies.Otopus;
@@ -169,11 +169,7 @@ public class LevelMap {
                         break;
                     }
                     
-                    case '3' : {
-                    	entitiesManager.enemy.add(new BossCrap(j*32, i*32)); 
-                    	hash = getHash("grass");
-                    	break; 
-                    }
+                    
                     
                     case 'p' :{
                         hash = getHash("grass");
@@ -211,6 +207,10 @@ public class LevelMap {
             System.out.println(tile);
         }
 
+    }
+
+    public void reset() {
+        
     }
 
 }

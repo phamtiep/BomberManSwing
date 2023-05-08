@@ -27,10 +27,9 @@ public class StateManager {
       
         this.menuState = new MenuState();
         this.gameState = new GameState();
-        gameState.setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
-        gameState.setLayout(null);
         menuState.setSize(GameConfig.SCREEN_WIDTH,GameConfig.SCREEN_HEIGHT);
         Main.getInstance().add(gameState);
+        gameState.add();
         Main.getInstance().add(menuState);
     }
     public void setCurrentState(State inputState) {

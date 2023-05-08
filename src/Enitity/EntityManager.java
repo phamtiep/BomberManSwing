@@ -11,24 +11,27 @@ import Config.GameConfig;
 import Enemies.Enemy;
 import Enemies.Otopus;
 import Map.LevelMap;
+import StateManager.GameState;
+import StateManager.GameState.Stage;
 
 public class EntityManager {
 
     public List<Enemy> enemy = new ArrayList<>();
     public List<Bomb> bombs = new ArrayList<>();
     public List<Brick> brick = new ArrayList<>();
-    public List<Item> item = new ArrayList<>(); 
-    
+    public List<Item> item = new ArrayList<>();
+
     public Bomber bomber;
     public final int LIVE_DEFAULT = 3;
     public int lives = LIVE_DEFAULT;
+    public int score = 0;
+
     /**
      * @return the lives
      */
     public int getLives() {
         return lives;
     }
-   
 
     /**
      * @param lives the lives to set
@@ -57,10 +60,10 @@ public class EntityManager {
                 enemy.render(g);
             }
         });
-        item.forEach(item ->{
-        	if(!item.done) {
-        		item.render(g);
-        	}
+        item.forEach(item -> {
+            if (!item.done) {
+                item.render(g);
+            }
         });
         brick.forEach(brick -> brick.render(g));
         bombs.forEach(bomb -> bomb.render(g));
@@ -69,13 +72,29 @@ public class EntityManager {
 
     public void update() {
         System.out.println(lives);
-        enemy.forEach(enemy -> enemy.update());
-        item.forEach(item ->{
-        	if(!item.done) {
-        		item.update();
-        	}
+
+        // enemy.forEach(enemy -> enemy.update());
+        item.forEach(item -> {
+            if (!item.done) {
+                item.update();
+            }
         });
-        
+
+        if (lives < 0)
+            GameState.gameStage = Stage.Lose;
+        score = 0;
+        enemy.forEach(enemy -> {
+            if (!enemy.isDone())
+                enemy.update();
+            else
+                score += enemy.getScore();
+        });
+        for (int i = 0; i < enemy.size(); i++) {
+            if (!enemy.get(i).isDone())
+                break;
+            else if (i == enemy.size() - 1)
+                GameState.gameStage = Stage.Win;
+        }
         for (int i = 0; i < bombs.size(); i++) {
             if (!bombs.get(i).isDone()) {
                 bombs.get(i).update();
@@ -91,11 +110,12 @@ public class EntityManager {
                 if (!flame.isDone()) {
                     BoxCollider flameBox = new BoxCollider(flame.getX(), flame.getY(), 32, 32);
                     BoxCollider bomberBox = bomber.getBomberBox();
-                    if (bomber.getPlayerAction() != Action.DEAD &&bomberBox.isCollidedWith(flameBox)&&!bomber.isUndead) {
+                    if (bomber.getPlayerAction() != Action.DEAD
+                            && bomberBox.isCollidedWith(flameBox) && !bomber.isUndead) {
                         bomber.setPlayerAction(Action.DEAD);
                         this.lives--;
                     }
-                        enemy.forEach(enemy -> {
+                    enemy.forEach(enemy -> {
                         if (!enemy.isDone()) {
                             BoxCollider enemyBox = new BoxCollider(enemy.getX(), enemy.getY(), 32,
                                     32);
@@ -121,17 +141,25 @@ public class EntityManager {
                 enemyBox = new BoxCollider(enemys.getX(), enemys.getY(), 32, 32);
 
                 BoxCollider bomberBox = bomber.getBomberBox();
-                if (bomber.getPlayerAction() != Action.DEAD &&!enemys.isDestroyed() && bomberBox.isCollidedWith(enemyBox)&&!bomber.isUndead) {
+                if (bomber.getPlayerAction() != Action.DEAD && !enemys.isDestroyed()
+                        && bomberBox.isCollidedWith(enemyBox) && !bomber.isUndead) {
                     bomber.setPlayerAction(Action.DEAD);
                     this.lives--;
-                   
+
                 }
             }
         }
     }
-    
-    public void checkEaten() {
-    	
+
+    public void reset() {
+        // LevelMap.getInstance().reset();
+        enemy.clear();
+        brick.clear();
+        bombs.clear();
+        lives = LIVE_DEFAULT;
+
+        LevelMap.getInstance().inputLevel();
+
     }
 
 }

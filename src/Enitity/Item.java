@@ -41,6 +41,7 @@ public abstract class Item extends Entity {
 		
 		if(eaten) {
 			if(!done) {
+			    done = true;
 			changePower();
 			}
 		}

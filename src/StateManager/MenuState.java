@@ -12,8 +12,10 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import Config.GameConfig;
+import Enitity.EntityManager;
 import Graphics.SpriteSheet;
 import Main.Main;
+import StateManager.GameState.Stage;
 import StateManager.StateManager.State;
 
 public class MenuState extends JPanel {
@@ -28,7 +30,7 @@ public class MenuState extends JPanel {
 	
 	
 	public MenuState() {
-        this.setSize(GameConfig.WIDTH + GameConfig.SIZE_BLOCK*2, GameConfig.HEIGHT + GameConfig.SIZE_BLOCK *1);
+        this.setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         initMyMouse(); 
         mouseLocation(); 
         repaint();
@@ -48,6 +50,7 @@ public class MenuState extends JPanel {
 					p = 1;
 					o = 0; 
 					q = 0; 
+					 
 				}else if (checkMouse(e.getX(), e.getY()) == 2) {
 					p = 0; 
 					o = 1; 
@@ -97,7 +100,10 @@ public class MenuState extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(checkMouse(e.getX(), e.getY()) == 1 ) {
+				   GameState.gameStage = Stage.Playing;
+				   EntityManager.getInstance().reset();
 					StateManager.getInstance().setCurrentState(State.GAME);
+					
 				}
 				else if(checkMouse(e.getX(), e.getY()) == 3){
 					System.exit(0);
@@ -139,7 +145,7 @@ public class MenuState extends JPanel {
 		menu = spriteSheet.getImg(); 
 		g.setColor(Color.BLACK); 
 		g.fillRect(0, 0, GameConfig.WIDTH + 32*2, GameConfig.HEIGHT + 32);
-		g.drawImage(background , 0 , 0 , 720 , 662, null); 
+		g.drawImage(background , 0 , 0 ,this.getWidth() , this.getHeight(), null); 
 		g.drawImage(menu,GameConfig.WIDTH / 2 - 200 / 2, GameConfig.WIDTH / 2 - 402 / 2 , 256 , 402 , null); 
 	}
 	
