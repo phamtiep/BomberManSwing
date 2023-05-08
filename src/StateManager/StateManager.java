@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import Config.GameConfig;
 import Main.*;
 
 public class StateManager {
@@ -26,6 +27,9 @@ public class StateManager {
       
         this.menuState = new MenuState();
         this.gameState = new GameState();
+        gameState.setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
+        gameState.setLayout(null);
+        menuState.setSize(GameConfig.SCREEN_WIDTH,GameConfig.SCREEN_HEIGHT);
         Main.getInstance().add(gameState);
         Main.getInstance().add(menuState);
     }

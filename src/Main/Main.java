@@ -27,7 +27,7 @@ public class Main extends JFrame implements  Runnable {
 
     public void startGame() {
         this.setSize(GameConfig.SCREEN_WIDTH,GameConfig.SCREEN_HEIGHT);
-        this.setLayout(new BorderLayout());
+        this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         StateManager.getInstance().setCurrentState(State.MENU);
